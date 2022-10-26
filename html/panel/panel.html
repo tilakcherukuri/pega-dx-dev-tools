@@ -1,0 +1,146 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/panel.css" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="/assets/bootstrap/bootstrap.min.css" />
+    <!-- Icon Class Reference - https://icons.getbootstrap.com/ -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+    <script src="/js/notifications.js"></script>
+
+    <title>Pega DX Project</title>
+  </head>
+  <body>
+    <button class="refreshBtnClass" id="refreshBtn">
+      <i class="floatRereshBtn">&#8634;</i>
+    </button>
+    <div class="wrapper">
+      <div class="tabs">
+        <div role="tablist" aria-label="Main Tabs">
+          <button
+            role="tab"
+            class="tab-header"
+            aria-selected="true"
+            id="Overview"
+          >
+            <i class="bi bi-info-square"></i> Overview
+          </button>
+          <button
+            role="tab"
+            class="tab-header"
+            aria-selected="false"
+            id="Network"
+          >
+            <i class="bi bi-reception-4"></i> API Traffic
+          </button>
+          <button
+            role="tab"
+            class="tab-header"
+            aria-selected="false"
+            id="Console"
+          >
+            <i class="bi bi-binoculars"></i> Console
+          </button>
+          <button
+            role="tab"
+            class="tab-header"
+            aria-selected="false"
+            id="Scripting"
+            tab-remove="false"
+          >
+            <i class="bi bi-braces"></i> Scripting
+          </button>
+          <button
+            role="tab"
+            class="tab-header"
+            aria-selected="false"
+            id="References"
+            tab-remove="false"
+          >
+            <i class="bi bi-book"></i> References
+          </button>
+          <button
+            role="tab"
+            class="tab-header"
+            aria-selected="false"
+            id="Insights"
+            tab-remove="false"
+          >
+            <i class="bi bi-bookmark"></i> Insights
+          </button>
+        </div>
+        <div role="tabpanel" aria-labelledby="Overview">
+          <div>
+            <iframe
+              id="overview-frame"
+              width="100%"
+              height="500px"
+              src="/html/overview/overview.html"
+            ></iframe>
+          </div>
+        </div>
+        <div
+          role="tabpanel"
+          aria-labelledby="Network"
+          hidden
+          style="padding: 0px"
+        >
+          <iframe
+            id="ServiceTrafficFrame"
+            width="100%"
+            height="500px"
+            src="../service-traffic/ServiceTraffic.html"
+            style="border: none"
+          ></iframe>
+        </div>
+        <div role="tabpanel" aria-labelledby="Scripting" hidden>
+          <iframe
+            id="scriptFrame"
+            width="100%"
+            height="500px"
+            src="../scripting/popup.html"
+            allow="clipboard-read; clipboard-write"
+          ></iframe>
+        </div>
+        <div role="tabpanel" aria-labelledby="Console" hidden>
+          <p>Add Console Code here!</p>
+        </div>
+        <div role="tabpanel" aria-labelledby="References" hidden style="padding:0px;">
+          <iframe
+          id="refFrame"
+          width="100%"
+          height="450px"
+          src="../reference/reference.html"
+          style="margin:0px;"
+        ></iframe>
+        </div>
+        <div role="tabpanel" aria-labelledby="Insights" hidden>
+          <iframe
+            id="insightsFrame"
+            width="100%"
+            height="300%"
+            src="../insights/insights.html"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+    <!-- Footer Text -->
+    <div style="position: relative">
+      <p
+        style="
+          position: fixed;
+          bottom: 0;
+          width: 100%;
+          text-align: center;
+          font-size: 10px;
+        "
+        id="msgr"
+      ></p>
+    </div>
+  </body>
+  <script src="/js/panel.js"></script>
+</html>
