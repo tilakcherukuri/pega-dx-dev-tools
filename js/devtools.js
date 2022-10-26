@@ -22,8 +22,8 @@ chrome.devtools.network.onRequestFinished.addListener((request) => {
     serviceURLToTrace = res.selectedServiceUrl;
   });
   request.getContent((body) => {
-   // if(serviceURLToTrace != ""){
-    //  if((request.request.url).startsWith(serviceURLToTrace)){
+   if(serviceURLToTrace != ""){
+     if((request.request.url).startsWith(serviceURLToTrace)){
         chrome.runtime.sendMessage({
           id: requestIDCounter,
           type: "networkdata",
@@ -31,8 +31,8 @@ chrome.devtools.network.onRequestFinished.addListener((request) => {
           body: body,
           details_filtered: req_obj,
         });
-   //   }
-   // }
+     }
+    }
     
 
   });
