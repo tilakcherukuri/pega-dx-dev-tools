@@ -58,11 +58,18 @@ oldId = this.id;
 
 chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
     if (msg.type === "networkdata") {
-        console.log(msg);
         const endpointTBody = document.getElementById("endpointTBody");
         const row = document.createElement("tr");
         row.setAttribute("id",msg.id);
-        row.setAttribute("class","endpointRow");
+        if((""+msg.details.response.status).startsWith("2")){
+            row.setAttribute("class","endpointRowGreen");
+        }else if((""+msg.details.response.status).startsWith("3")){
+            row.setAttribute("class","endpointRowOrange");
+        }else if((""+msg.details.response.status).startsWith("4")){
+            row.setAttribute("class","endpointRowRed");
+        }else{
+            row.setAttribute("class","endpointRow");
+        }
         const cell = document.createElement("td");
         const anchorTag = document.createElement("a");
         const cellText = document.createTextNode(msg.details.request.url);
