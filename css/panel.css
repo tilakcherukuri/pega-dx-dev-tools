@@ -15,11 +15,6 @@ html {
   display: grid;
 }
 
-/*[role="tablist"] {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  }*/
-
 [role="tabpanel"] {
   background: transparent;
   padding: 20px;
