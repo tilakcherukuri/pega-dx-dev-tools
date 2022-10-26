@@ -7,6 +7,10 @@
     <title>Document</title>
     <link rel="stylesheet" href="/assets/bootstrap/bootstrap.min.css" />
     <script src="/js/notifications.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
 
 
 </head>
@@ -99,14 +103,14 @@
     justify-content: center;
 }
 #Header{
-font-size : 16px;
+font-size : 15px;
 font-weight: bold;
 margin-bottom:15px;
 background-color: #aaaaaab3;
     text-align: center;
 }
 .content{
-  font-size : 16px;
+  font-size : 13px;
 }
 #FileContent{
   cursor:grab;
@@ -127,11 +131,23 @@ table{
     border-spacing: 0px;
 }
 li{
-  margin-bottom:10px;
+  margin-bottom:5px;
   margin-left:15px;
 }
 li:hover{
             background-color:white;
+        }
+
+        #copy{
+          cursor:pointer;
+          position:relative;
+          float:right;
+          color:#0d6efd;
+          font-weight: bold;
+         font-style:normal;
+         font-size:14px;
+         margin-right:10px;
+
         }
 </style>
 
@@ -155,9 +171,9 @@ li:hover{
             
             <div id="response" >
               <div id="Header">JS File Content
-              
+               <i id="copy" class="bi bi-clipboard" title="Click here to copy the content">Copy</i>
               </div>
-              <button id="copy" class="btn btn-primary" title="Click to copy the content" >Copy</button>
+              
               <p id="showJsContent" class="content">
                
 
