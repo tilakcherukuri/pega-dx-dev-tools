@@ -10,10 +10,14 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
     />
+    <script src="/js/notifications.js"></script>
 
     <title>Pega DX Project</title>
   </head>
   <body>
+    <button class="refreshBtnClass" id="refreshBtn">
+      <i class="floatRereshBtn">&#8634;</i>
+    </button>
     <div class="wrapper">
       <div class="tabs">
         <div role="tablist" aria-label="Main Tabs">
@@ -29,18 +33,18 @@
             role="tab"
             class="tab-header"
             aria-selected="false"
-            id="APITraffic"
+            id="Network"
           >
             <i class="bi bi-reception-4"></i> API Traffic
           </button>
-          <button role="tab" class="tab-header" aria-selected="false" id="Logs">
+          <button role="tab" class="tab-header" aria-selected="false" id="Console">
             <i class="bi bi-binoculars"></i> Logs
           </button>
           <button
             role="tab"
             class="tab-header"
             aria-selected="false"
-            id="Scripting"
+            id="Scripts"
             tab-remove="false"
           >
             <i class="bi bi-braces"></i> JS Content
@@ -49,7 +53,7 @@
             role="tab"
             class="tab-header"
             aria-selected="false"
-            id="Need Help"
+            id="References"
             tab-remove="false"
           >
             <i class="bi bi-book"></i> Need Help
@@ -74,7 +78,7 @@
             ></iframe>
           </div>
         </div>
-        <div role="tabpanel" aria-labelledby="APITraffic" hidden style="padding: 0px;">
+        <div role="tabpanel" aria-labelledby="Network" hidden style="padding: 0px;">
           <iframe
           id="ServiceTrafficFrame"
           width="100%"
@@ -83,7 +87,7 @@
           style="border: none"
         ></iframe>
         </div>
-        <div role="tabpanel" aria-labelledby="Scripting" hidden>
+        <div role="tabpanel" aria-labelledby="Scripts" hidden>
           <iframe
             id="scriptFrame"
             width="100%"
@@ -92,7 +96,7 @@
             allow="clipboard-read; clipboard-write "
           ></iframe>
         </div>
-        <div role="tabpanel" aria-labelledby="Logs" hidden style="padding:0px;">
+        <div role="tabpanel" aria-labelledby="Console" hidden style="padding:0px;">
           
           <iframe
           id="logsFrame"
@@ -102,7 +106,7 @@
           style="margin:0px;"
         ></iframe>
         </div>
-        <div role="tabpanel" aria-labelledby="Need Help" hidden style="padding:0px;">
+        <div role="tabpanel" aria-labelledby="References" hidden style="padding:0px;">
          
           <iframe
           id="needHelpFrame"
@@ -122,6 +126,19 @@
           ></iframe>
         </div>
       </div>
+    </div>
+    <!-- Footer Text -->
+    <div style="position: relative">
+      <p
+        style="
+          position: fixed;
+          bottom: 0;
+          width: 100%;
+          text-align: center;
+          font-size: 10px;
+        "
+        id="msgr"
+      ></p>
     </div>
   </body>
   <script src="/js/panel.js"></script>
