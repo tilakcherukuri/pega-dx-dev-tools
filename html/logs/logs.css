@@ -1,4 +1,16 @@
 .container{
-width: 95% !important;
+width: 100% !important;
 }
-   
+
+.alert{
+    margin-bottom:5px;
+    padding:5px;
+}
+
+.logText{
+    margin:0px;
+}
+
+body{
+    background-color: #fff;
+}

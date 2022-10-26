@@ -5,18 +5,32 @@ chrome.devtools.panels.create(
   function (panel) {}
 );
 
-window.localStorage.removeItem("sync_q");
-window.localStorage.removeItem("prev_sync_q");
+window.localStorage.removeItem("lowest_val");
+window.localStorage.removeItem("highest_val");
 var requestIDCounter = 0;
 chrome.devtools.network.onRequestFinished.addListener((request) => {
-
-  request.getContent( (body) => {
-    chrome.runtime.sendMessage(
-      { id:requestIDCounter, type: "networkdata", details: request, body:body },
-      function (response) {
-      }
-    );
+  let req_obj = {
+    url: request.request.url,
+    method: request.request.method,
+    res_stats: request.response.status,
+    res_code: request.response.statusText,
+    time: request.time,
+    startedDateTime: request.startedDateTime,
+  };
+  request.getContent((body) => {
+    chrome.runtime.sendMessage({
+      id: requestIDCounter,
+      type: "networkdata",
+      details: request,
+      body: body,
+      details_filtered: req_obj,
+    });
   });
   requestIDCounter++;
-
+  /* //Dont delete below code
+  chrome.runtime.sendMessage({
+    type: "networkdata",
+    details: req_obj,
+    details_filtered: req_obj,
+  });*/
 });

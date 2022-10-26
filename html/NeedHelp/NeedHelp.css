@@ -1,6 +1,6 @@
 .dx-style{
-    background-color: #eee;
-     border-left: 6px solid #aaaaaab3;
+    background-color: #fff;
+     border-left: 6px solid #cccfef;
     
 }
 
@@ -14,7 +14,7 @@
 .topicHeading{
     color:rgb(23, 1, 44);
     /*font-family: 'Raleway',sans-serif; */
-    font-size: 24px; 
+    font-size: 20px; 
     font-weight: 600; 
     line-height: 18px; 
     margin: 0 0 10px;
