@@ -30,12 +30,14 @@ const identifyAppType = () => {
       const bundle = res.toLocaleLowerCase();
       if (bundle.includes("pega")) {
         if (bundle.includes("sdk")) {
+          setAppDetailsStorage("Pega React SDK");
           chrome.runtime.sendMessage({
             buildType: "pega-app",
             appType: "Pega React SDK",
           });
         }
         if (bundle.includes("sp-r")) {
+          setAppDetailsStorage("Pega React Starter Pack");
           chrome.runtime.sendMessage({
             buildType: "pega-app",
             appType: "Pega React Starter Pack",
@@ -43,6 +45,7 @@ const identifyAppType = () => {
         }
       } else {
         /* react app is not pega based */
+        setAppDetailsStorage("Not Pega React");
         chrome.runtime.sendMessage({
           buildType: "disabled",
         });
@@ -54,11 +57,13 @@ const identifyAppType = () => {
       const main = res.toLocaleLowerCase();
       if (main.includes("pega")) {
         if (main.includes("sdk")) {
+          setAppDetailsStorage("Pega Angular SDK");
           chrome.runtime.sendMessage({
             reactBuildType: "pega-app",
             appType: "Pega Angular SDK",
           });
         } else if (main.includes("sp-a")) {
+          setAppDetailsStorage("Pega Angular Starter Pack");
           chrome.runtime.sendMessage({
             reactBuildType: "pega-app",
             appType: "Pega Angular Starter Pack",
@@ -66,6 +71,7 @@ const identifyAppType = () => {
         }
       } else {
         // angular app is not pega based
+        setAppDetailsStorage("Not Pega Angular");
         setNotSupportedData();
       }
     });
@@ -107,11 +113,15 @@ window.addEventListener(
     if (event.data.type && event.data.type == "FROM_INJECTED_SCRIPT") {
       /* COSMOS -REACT */
       if (event.data.buildType && issconstellationFileAvailable) {
+        setAppDetailsStorage("Cosmos React");
         chrome.runtime.sendMessage({
           buildType: "pega-app",
           appType: "Cosmos React",
         });
       }
+    }
+    else{
+      setAppDetailsStorage("Not Pega Cosmos");
     }
   },
   false
@@ -126,4 +136,13 @@ function setNotSupportedData() {
   chrome.runtime.sendMessage({
     buildType: "disabled",
   });
+}
+
+
+function setAppDetailsStorage(appType){
+  chrome.storage.local.set({
+    applicationType:appType
+    
+  });
+
 }
