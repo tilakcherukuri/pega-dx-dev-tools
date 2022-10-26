@@ -217,7 +217,7 @@ let renderNewInsights = async (item) => {
 chrome.runtime.onMessage.addListener(function (request) {
   if (request.type === "networkdata") {
     console.info("listened to message", request);
-    let req_obj = request.details;
+    let req_obj = request.details_filtered;
     if (req_obj) {
       renderNewInsights(req_obj);
     }

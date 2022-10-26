@@ -17,5 +17,9 @@ chrome.devtools.network.onRequestFinished.addListener((request) => {
     time: request.time,
     startedDateTime: request.startedDateTime,
   };
-    chrome.runtime.sendMessage({ type: "networkdata", details: req_obj });
+  chrome.runtime.sendMessage({
+    type: "networkdata",
+    details: req_obj,
+    details_filtered: req_obj,
+  });
 });
