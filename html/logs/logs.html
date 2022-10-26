@@ -1,16 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../logs/logs.css">
-    <title>Logs</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../logs/logs.css">
+
 </head>
 <body>
-    <div class="MainLogs">
-    <p>I am from Logs Frame</p>
+
+<!-- <div class="jumbotron text-center">
+  <h1>My First Bootstrap Page</h1>
+  <p>Resize this responsive page to see the effect!</p> 
+</div> -->
+  
+<div class="container" id="log-contaner">
+  <div class="row">
+    <div class="col-sm-4">
+      <h3>Type</h3>
+    </div>
+    <div class="col-sm-4">
+      <h3>Message</h3>
+    </div>
+    <div class="col-sm-4">
+      <h3>Time Stamp</h3>        
+    </div>
+  </div>
+
+  <div class="row alert alert-info">
+    <div class="col-sm-4">
+        <p>Info</p>
+    </div>
+    <div class="col-sm-4">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+    </div>
+    <div class="col-sm-4">
+        <p>July 21, 1983 01:15:00</p>    
+    </div>
+  </div>
+  <div class="row alert alert-warning">
+    <div class="col-sm-4">
+        <p>Warning</p>
+    </div>
+    <div class="col-sm-4">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+    </div>
+    <div class="col-sm-4">
+        <p>July 21, 1983 01:15:00</p>
+    </div>
+  </div>
+  <div class="row alert alert-danger">
+    <div class="col-sm-4">
+        <p>Error</p>
+    </div>
+    <div class="col-sm-4">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+    </div>
+    <div class="col-sm-4">
+        <p>July 21, 1983 01:15:00</p>     
+    </div>
+  </div>
+  <div class="row alert alert-success" >
+    <div class="col-sm-4">
+        <p>Success</p>
+    </div>
+    <div class="col-sm-4">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+    </div>
+    <div class="col-sm-4">
+        <p>July 21, 1983 01:15:00</p>  
+    </div>
+  </div>
 </div>
-    
 </body>
+<script src="/js/logs/logs.js"></script>
 </html>
