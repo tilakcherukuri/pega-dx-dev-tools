@@ -31,15 +31,16 @@ const addRow = (log) => {
   let div = document.getElementById("log-contaner")
   if (div) {
     let html = `<div class="${logTypes[log.type.toLowerCase()]}">
-  <div class="col-sm-4">
-      <p>${camalize(log.type)}</p>
+    <div class="col-sm-4">
+      <p class="logText">${log.timestamp}</p>
   </div>
   <div class="col-sm-4">
-      <p>${log.message}</p>
+      <p class="logText">${log.message}</p>
   </div>
   <div class="col-sm-4">
-      <p>${log.timestamp}</p>
+      <p class="logText">${camalize(log.type)}</p>
   </div>
+  
   </div>`
     html = html.trim()
     div.innerHTML = div.innerHTML + html
