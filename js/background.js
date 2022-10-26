@@ -30,3 +30,46 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
     sendResponse({ tab: sender.tab.id });
   }
 });
+
+
+chrome.alarms.create("NotificationTimer", {
+  periodInMinutes: 1000,
+});
+
+chrome.alarms.onAlarm.addListener((alarm) => {
+  if (alarm.name === "NotificationTimer" && showNotfication) {
+    this.registration.showNotification("Please find details", {
+      body: `Application : ${appType}`,
+      icon: "/assets/icons/development.png",
+    })
+    showNotfication = false
+  }
+}); 
+
+// Configure ServiceUrl Alarm
+var selectedServiceUrlValue = "";
+chrome.alarms.create("ServiceUrlAlarm", {
+    when : new Date().now,
+    periodInMinutes: 0.5,
+});
+
+chrome.alarms.onAlarm.addListener((alarm) => {
+  chrome.storage.sync.get([
+    'selectedServiceUrl'
+    ], function(res) {
+    if (res.selectedServiceUrl == "" || res.selectedServiceUrl == undefined) {
+      showServiceUrlNotification = true;
+    } else {
+      showServiceUrlNotification = false;
+    }
+    console.log("selectedServiceUrl="+ res.selectedServiceUrl+ ", showServiceUrlNotification="+showServiceUrlNotification);
+
+    if (alarm.name === "ServiceUrlAlarm" && showServiceUrlNotification) {
+      console.log("Trigger ServiceUrlAlarm Notification");
+      registration.showNotification("Warning", {
+        body: "Please configure the Service Url from Options page!",
+        icon: "/assets/icons/development.png",
+      });
+    }
+  });
+});
