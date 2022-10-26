@@ -16,10 +16,6 @@
 </head>
 <style>
 
-  .btn:active{
-
-    
-  }
   body{
     overflow:hidden;
   }
@@ -61,7 +57,7 @@
     width: 100%;
     height: 100%;
     min-width: 10px;
-    padding: calc(1rem);
+    
    
     
  
@@ -72,7 +68,8 @@
     width: 50%;
     height: 400px;
     min-width: 10px;
-    overflow:auto;
+    overflow-x:auto;
+    
 
 }
 
@@ -81,7 +78,7 @@
     width: 50%;
     height: 400px;
     min-width: 10px;
-    overflow:auto;
+    
 }
 #separator2 {
     cursor: col-resize;
@@ -94,8 +91,8 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    margin-right:20px;
-    margin-left:20px;
+    margin-right:5px;
+    margin-left:5px;
 }
 .service-traffic-info{
     display: flex;
@@ -111,10 +108,17 @@ background-color: #aaaaaab3;
 }
 .content{
   font-size : 13px;
+  height:350px;
+  overflow:scroll;
+  word-wrap:break-word;
 }
 #FileContent{
   cursor:grab;
   margin-left:15px;
+  
+  overflow: auto;
+    height: 350px;
+
 }
 body{
     margin: 0;
@@ -149,6 +153,9 @@ li:hover{
          margin-right:10px;
 
         }
+        
+      
+
 </style>
 
 </style></head><body>
