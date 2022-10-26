@@ -33,7 +33,11 @@
       "matches": ["http://*/*", "https://*/*"],
       "js": ["/js/jsContent/content_script_accessjs.js"]
     }
-  ],
+  ], 
+  "options_ui": {
+      "page": "html/devtools/options.html",
+      "open_in_tab": true
+  }, 
   "web_accessible_resources": [
     {
       "resources": ["inject.js"],
