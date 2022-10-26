@@ -1,0 +1,89 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/panel.css" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="/assets/bootstrap/bootstrap.min.css" />
+    <!-- Icon Class Reference - https://icons.getbootstrap.com/ -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+
+    <title>Pega DX Project</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="tabs">
+        <div role="tablist" aria-label="Main Tabs">
+          <button
+            role="tab"
+            class="tab-header"
+            aria-selected="true"
+            id="Overview"
+          >
+            <i class="bi bi-info-square"></i> Overview
+          </button>
+          <button
+            role="tab"
+            class="tab-header"
+            aria-selected="false"
+            id="APITraffic"
+          >
+            <i class="bi bi-reception-4"></i> API Traffic
+          </button>
+          <button role="tab" class="tab-header" aria-selected="false" id="Logs">
+            <i class="bi bi-binoculars"></i> Logs
+          </button>
+          <button
+            role="tab"
+            class="tab-header"
+            aria-selected="false"
+            id="Scripting"
+            tab-remove="false"
+          >
+            <i class="bi bi-braces"></i> Scripting
+          </button>
+          <button
+            role="tab"
+            class="tab-header"
+            aria-selected="false"
+            id="References"
+            tab-remove="false"
+          >
+            <i class="bi bi-book"></i> References
+          </button>
+          <button
+            role="tab"
+            class="tab-header"
+            aria-selected="false"
+            id="Insights"
+            tab-remove="false"
+          >
+            <i class="bi bi-bookmark"></i> Insights
+          </button>
+        </div>
+        <div role="tabpanel" aria-labelledby="Overview">
+          <p>Add Overview Code here!</p>
+        </div>
+        <div role="tabpanel" aria-labelledby="APITraffic" hidden>
+          <p>Add API traffic Code here!</p>
+        </div>
+        <div role="tabpanel" aria-labelledby="Scripting" hidden>
+          <p>Add Scripting Code here!</p>
+        </div>
+        <div role="tabpanel" aria-labelledby="Logs" hidden>
+          <p>Add Logs Code here!</p>
+        </div>
+        <div role="tabpanel" aria-labelledby="References" hidden>
+          <p>Add Refrences Code here!</p>
+        </div>
+        <div role="tabpanel" aria-labelledby="Insights" hidden>
+          <p>Add Insights Code here!</p>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="/js/panel.js"></script>
+</html>
