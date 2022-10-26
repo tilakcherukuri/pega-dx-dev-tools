@@ -56,14 +56,7 @@ chrome.storage.local.get(
           ? appDetails["applicationType"]
           : "Not found";
       applicationTypeChanges();
-    } else if (
-      appDetails["applicationType"]
-        .toLocaleLowerCase()
-        .includes("not supported")
-    ) {
-      document.getElementById("main-details").style.display = "none";
-      document.getElementById("not-supported-details").style.display = "block";
-    }
+    } 
   }
 );
 
