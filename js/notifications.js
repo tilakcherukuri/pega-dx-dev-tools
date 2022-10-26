@@ -13,7 +13,7 @@ chrome.storage.sync.get([
 'selectedServiceUrl'
 ], function(res){
     notification_preferences = res.notificationSelection;
-    selectedServiceUrlValue = selectedServiceUrl;
+    selectedServiceUrlValue = res.selectedServiceUrl;
 });
 
 function publishnotification(notifications_options, notification_preferences){
