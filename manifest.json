@@ -14,11 +14,26 @@
     "128": "/assets/images/logo.png",
     "256": "/assets/images/logo.png"
   },
-  "permissions": ["webRequest"],
+  "permissions": [
+    "webRequest",
+    "tabs",
+    "scripting",
+    "storage",
+    "alarms",
+    "notifications",
+    "clipboardRead",
+    "clipboardWrite"
+  ],
   "host_permissions": ["<all_urls>"],
   "devtools_page": "html/devtools/devtools.html",
   "action": {
     "default_title": "Pega DX Developer Tools",
     "default_popup": "/html/popups/disabled.html"
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["/js/jsContent/content_script_accessjs.js"]
+    }
+  ]
 }
