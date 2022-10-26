@@ -161,6 +161,7 @@ function getReactSPDetails(bundle) {
   pegaPlatformURL = pegaPlatformURL.replaceAll('"', "")
   setValuesToLocalStorage(activeTabId)
 }
+/* Function for Prod mode React-Starter-pack */
 function getReactSPDetailsForProd(bundle) {
   applicationType = "Pega React Starter Pack"
 
