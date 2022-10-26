@@ -1,24 +1,43 @@
 {
-    "manifest_version": 3,
-    "name": "Pega DX Developer Tools",
-    "version": "1.0.0",
-    "description": "An extension for troubleshooting apps running on pega dx services",
-    "background": {
-        "service_worker": "/js/background.js"
-      },
-    "icons": {
-        "16":"/assets/images/logo.png",
-        "32":"/assets/images/logo.png",
-        "48":"/assets/images/logo.png",
-        "64":"/assets/images/logo.png",
-        "128":"/assets/images/logo.png",
-        "256":"/assets/images/logo.png"
-    },
-    "permissions": [ 
-        "webRequest"
-    ],
-    "host_permissions": [
-        "<all_urls>"
-      ]
-   
- }
+  "manifest_version": 3,
+  "name": "Pega DX Developer Tools",
+  "version": "1.0.0",
+  "description": "An extension for troubleshooting apps running on pega dx services",
+  "background": {
+    "service_worker": "/js/background.js"
+  },
+  "icons": {
+    "16": "/assets/icons/16-disabled.png",
+    "48": "/assets/icons/48-disabled.png",
+    "128": "/assets/icons/128-disabled.png"
+  },
+  "permissions": [
+    "webRequest",
+    "tabs",
+    "scripting",
+    "storage",
+    "alarms",
+    "notifications",
+    "clipboardRead",
+    "clipboardWrite"
+  ],
+  "host_permissions": ["<all_urls>"],
+  "devtools_page": "html/devtools/devtools.html",
+  "action": {
+    "default_title": "Pega DX Developer Tools",
+    "default_popup": "/html/popups/disabled.html"
+  },
+  "content_scripts": [
+    { "js": ["js/globalHook.js"], "matches": ["<all_urls>"] },
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["/js/jsContent/content_script_accessjs.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["inject.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

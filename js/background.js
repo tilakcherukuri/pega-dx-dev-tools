@@ -31,6 +31,7 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
   }
 });
 
+
 chrome.alarms.create("NotificationTimer", {
   periodInMinutes: 1000,
 });
@@ -72,4 +73,3 @@ chrome.alarms.onAlarm.addListener((alarm) => {
     }
   });
 });
-
