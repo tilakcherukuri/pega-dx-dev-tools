@@ -1,0 +1,24 @@
+{
+    "manifest_version": 3,
+    "name": "Pega DX Developer Tools",
+    "version": "1.0.0",
+    "description": "An extension for troubleshooting apps running on pega dx services",
+    "background": {
+        "service_worker": "/js/background.js"
+      },
+    "icons": {
+        "16":"/assets/images/logo.png",
+        "32":"/assets/images/logo.png",
+        "48":"/assets/images/logo.png",
+        "64":"/assets/images/logo.png",
+        "128":"/assets/images/logo.png",
+        "256":"/assets/images/logo.png"
+    },
+    "permissions": [ 
+        "webRequest"
+    ],
+    "host_permissions": [
+        "<all_urls>"
+      ]
+   
+ }
