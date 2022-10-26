@@ -4,8 +4,6 @@ chrome.devtools.panels.create(
   "/html/panel/panel.html",
   function (panel) {}
 );
-<<<<<<< Updated upstream
-=======
 
 window.localStorage.removeItem("sync_q");
 window.localStorage.removeItem("prev_sync_q");
@@ -21,4 +19,3 @@ chrome.devtools.network.onRequestFinished.addListener((request) => {
   });
   requestIDCounter++;
 });
->>>>>>> Stashed changes

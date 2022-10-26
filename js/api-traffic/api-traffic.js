@@ -40,9 +40,6 @@ function dragElement(element, direction, id1, id2)
 
 
 dragElement( document.getElementById("separator"), "H" , "endpoint","details");
-<<<<<<< Updated upstream
-dragElement( document.getElementById("separator2"), "H" , "request","response");
-=======
 dragElement( document.getElementById("separator2"), "H" , "request","response");
 
 
@@ -52,4 +49,3 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
      
     }
   });
->>>>>>> Stashed changes
