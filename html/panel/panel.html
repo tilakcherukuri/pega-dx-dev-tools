@@ -18,7 +18,7 @@
     <button class="refreshBtnClass" id="refreshBtn">
       <i class="floatRereshBtn">&#8634;</i>
     </button>
-    <div class="wrapper">
+    <div class="wrapper" id="supported-apps">
       <div class="tabs">
         <div role="tablist" aria-label="Main Tabs">
           <button
@@ -83,14 +83,19 @@
             ></iframe>
           </div>
         </div>
-        <div role="tabpanel" aria-labelledby="Network" hidden style="padding: 0px;">
+        <div
+          role="tabpanel"
+          aria-labelledby="Network"
+          hidden
+          style="padding: 0px"
+        >
           <iframe
-          id="ServiceTrafficFrame"
-          width="100%"
-          height="500px"
-          src="../api-traffic/ApiTraffic.html"
-          style="border: none"
-        ></iframe>
+            id="ServiceTrafficFrame"
+            width="100%"
+            height="500px"
+            src="../api-traffic/ApiTraffic.html"
+            style="border: none"
+          ></iframe>
         </div>
         <div role="tabpanel" aria-labelledby="Scripts" hidden>
           <iframe
@@ -101,26 +106,33 @@
             allow="clipboard-read; clipboard-write "
           ></iframe>
         </div>
-        <div role="tabpanel" aria-labelledby="Console" hidden style="padding:0px;">
-          
+        <div
+          role="tabpanel"
+          aria-labelledby="Console"
+          hidden
+          style="padding: 0px"
+        >
           <iframe
-          id="logsFrame"
-          width="100%"
-          height="450px"
-          src="../logs/logs.html"
-          style="margin:0px;"
-        ></iframe>
+            id="logsFrame"
+            width="100%"
+            height="450px"
+            src="../logs/logs.html"
+            style="margin: 0px"
+          ></iframe>
         </div>
-        <div role="tabpanel" aria-labelledby="References" hidden style="padding:0px;">
-         
+        <div
+          role="tabpanel"
+          aria-labelledby="References"
+          hidden
+          style="padding: 0px"
+        >
           <iframe
-          id="needHelpFrame"
-          width="100%"
-          height="450px"
-          src="../NeedHelp/NeedHelp.html"
-          style="margin:0px;"
-        ></iframe>
-          
+            id="needHelpFrame"
+            width="100%"
+            height="450px"
+            src="../NeedHelp/NeedHelp.html"
+            style="margin: 0px"
+          ></iframe>
         </div>
         <div role="tabpanel" aria-labelledby="Insights" hidden>
           <iframe
@@ -129,6 +141,17 @@
             height="300%"
             src="../insights/insights.html"
           ></iframe>
+        </div>
+      </div>
+    </div>
+    <div id="non-supported-apps" style="display: none">
+      <div class="container">
+        <div class="row justify-content-md-center">
+          <div class="col-10 mt-3">
+            <p class="text-center">
+              This app is not supported by Pega DX devtools extension.
+            </p>
+          </div>
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ let thirdPartyComponentVersion = "";
 let pegaPlatformVersion = "";
 
 window.addEventListener("_SDK_Details_", function (e) {
-  document.addEventListener("ConstellationReady", () => {
+  document.addEventListener("SdkConstellationReady", () => {
     window.PCore.onPCoreReady((e) => {
       pegaPlatformVersion = PCore.getPCoreVersion();
       window.postMessage({
@@ -17,28 +17,6 @@ window.addEventListener("_SDK_Details_", function (e) {
     });
   });
 });
-
-// var timer = setInterval(() => {
-//   forCosmosReact();
-// }, 1000);
-// const forCosmosReact = () => {
-//   console.log("*********");
-//   if (window.PCore) {
-//     console.log("*********", window.PCore.getPCoreVersion());
-//     PCore.getPubSubUtils().subscribe((res) => {
-//       console.log(res);
-//     });
-//     pegaPlatformVersion = window.PCore.getPCoreVersion();
-//     window.postMessage({
-//       type: "FROM_INJECTED_SCRIPT",
-//       pegaPlatformURL,
-//       applicationVersion,
-//       thirdPartyComponentVersion,
-//       pegaPlatformVersion,
-//     });
-//     clearInterval(timer);
-//   }
-// };
 
 /* COSMOS-REACT-FINDER */
 var timer = setInterval(() => {

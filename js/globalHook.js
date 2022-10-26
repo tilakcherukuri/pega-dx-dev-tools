@@ -9,7 +9,7 @@ let activeTabId = "";
 
 // *************************** Sets values to local storage *************************************
 function setValuesToLocalStorage(activeTabId) {
-  debugger;
+
   chrome.storage.local.set({
     activeTabId,
     thirdPartyComponentVersion,
@@ -23,7 +23,6 @@ function setValuesToLocalStorage(activeTabId) {
 
 //************************************** Identifies the type of app********************************** */
 const identifyAppType = () => {
-  console.log("here");
   // Dummy Message to get Tab ID
   chrome.runtime.sendMessage({ text: "Get Active Tab ID" }, (tabId) => {
     //console.log(tabId);
@@ -46,6 +45,7 @@ const identifyAppType = () => {
       const bundle = res.toLocaleLowerCase();
       if (bundle.includes("pega")) {
         if (bundle.includes("sdk")) {
+         
           chrome.runtime.sendMessage({
             buildType: "pega-app",
             appType: "Pega React SDK",
@@ -69,12 +69,14 @@ const identifyAppType = () => {
       const main = res.toLocaleLowerCase();
       if (main.includes("pega")) {
         if (main.includes("sdk")) {
+         
           chrome.runtime.sendMessage({
             reactBuildType: "pega-app",
             appType: "Pega Angular SDK",
           });
           getAngularSDKDetails(main);
         } else if (main.includes("sp-a")) {
+        
           chrome.runtime.sendMessage({
             reactBuildType: "pega-app",
             appType: "Pega Angular Starter Pack",
@@ -83,6 +85,7 @@ const identifyAppType = () => {
         }
       } else {
         // angular app is not pega based
+       
         setNotSupportedData();
       }
     });
