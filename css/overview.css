@@ -1,0 +1,17 @@
+.img-thumbnail {
+  height: 50px !important;
+}
+
+th {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+td {
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.card-text {
+  padding: 10px 40px;
+}

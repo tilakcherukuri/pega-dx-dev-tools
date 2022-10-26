@@ -30,13 +30,13 @@
   "content_scripts": [
     { "js": ["js/globalHook.js"], "matches": ["<all_urls>"] },
     {
-        "matches": ["http://*/*", "https://*/*"],
-        "js": ["/js/jsContent/content_script_accessjs.js"]
-      }
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["/js/jsContent/content_script_accessjs.js"]
+    }
   ],
   "web_accessible_resources": [
     {
-      "resources": ["content-script.js"],
+      "resources": ["inject.js"],
       "matches": ["<all_urls>"]
     }
   ]
