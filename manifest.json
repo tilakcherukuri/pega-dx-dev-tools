@@ -11,7 +11,16 @@
     "48": "/assets/icons/48-disabled.png",
     "128": "/assets/icons/128-disabled.png"
   },
-  "permissions": ["webRequest"],
+  "permissions": [
+    "webRequest",
+    "tabs",
+    "scripting",
+    "storage",
+    "alarms",
+    "notifications",
+    "clipboardRead",
+    "clipboardWrite"
+  ],
   "host_permissions": ["<all_urls>"],
   "devtools_page": "html/devtools/devtools.html",
   "action": {
@@ -19,7 +28,11 @@
     "default_popup": "/html/popups/disabled.html"
   },
   "content_scripts": [
-    { "js": ["js/globalHook.js"], "matches": ["<all_urls>"] }
+    { "js": ["js/globalHook.js"], "matches": ["<all_urls>"] },
+    {
+        "matches": ["http://*/*", "https://*/*"],
+        "js": ["/js/jsContent/content_script_accessjs.js"]
+      }
   ],
   "web_accessible_resources": [
     {
