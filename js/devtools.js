@@ -18,4 +18,5 @@ chrome.devtools.network.onRequestFinished.addListener((request) => {
     );
   });
   requestIDCounter++;
+
 });
