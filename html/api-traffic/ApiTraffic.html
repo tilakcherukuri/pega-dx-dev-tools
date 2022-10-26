@@ -28,7 +28,6 @@
 }
 
 #endpoint {
-    background-color: #eee;
     width: 40%;
     height: 100%;
     min-width: 10px;
@@ -36,13 +35,11 @@
 }
 
 #details {
-    background-color: #eee;
     width: 60%;
     height: 100%;
     min-width: 10px;
 }
 #request {
-    background-color: #eee;
     width: 50%;
     height: 100%;
     min-width: 10px;
@@ -50,7 +47,6 @@
 }
 
 #response {
-    background-color: #eee;
     width: 50%;
     height: 100%;
     min-width: 10px;
@@ -92,13 +88,27 @@ table{
     display: none;
 }
 .endpointRow:hover{
-    background-color: white;
+    background-color: #eee;
 }
 .endpointRowSelected{
-    background-color: #3386F6;
+    background-color: #a8ceff;
 }
 .endpointRow{
-    background-color: #eee;
+    background-color: #fff;
+}
+.endpointRowGreen{
+    background-color: rgb(148, 253, 192);
+}
+.endpointRowOrange{
+    background-color: rgb(250, 231, 148);
+}
+.endpointRowRed{
+    background-color: rgb(252, 176, 176);
+}
+thead{
+    color: #fff;
+    background-color: #343a40;
+    border-color: #454d55;
 }
 </style>
 <body>
@@ -108,7 +118,7 @@ table{
     <div class="trafficLog">
         <div id="endpoint">
             <table width="100%" >
-                <thead style="background-color: #aaaaaab3;">
+                <thead>
                     <th>Endpoint</th>
                 </thead>
                 <tbody id="endpointTBody">
@@ -120,7 +130,7 @@ table{
         <div id="details" style="display: flex">
             <div id="request">
                 <table width="100%" >
-                    <thead style="background-color: #aaaaaab3;">
+                    <thead>
                         <th>Request</th>
                     </thead>
                     <tbody id="requestTBody">
@@ -131,7 +141,7 @@ table{
             <div id="separator2" ></div>
             <div id="response" >
                 <table width="100%" >
-                    <thead style="background-color: #aaaaaab3;">
+                    <thead>
                         <th>Response</th>
                     </thead>
                     <tbody id="responseTBody">
