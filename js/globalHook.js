@@ -1,15 +1,14 @@
-let issconstellationFileAvailable = false;
 let pegaPlatformVersion = "";
 let pegaPlatformURL = "";
 let applicationVersion = "";
 let thirdPartyComponentVersion = "";
 let applicationType = "";
 let constellationURL = "";
+let constellationVersion = "";
 let activeTabId = "";
 
 // *************************** Sets values to local storage *************************************
 function setValuesToLocalStorage(activeTabId) {
-
   chrome.storage.local.set({
     activeTabId,
     thirdPartyComponentVersion,
@@ -18,6 +17,7 @@ function setValuesToLocalStorage(activeTabId) {
     applicationType,
     constellationURL,
     pegaPlatformVersion,
+    constellationVersion,
   });
 }
 
@@ -45,7 +45,6 @@ const identifyAppType = () => {
       const bundle = res.toLocaleLowerCase();
       if (bundle.includes("pega")) {
         if (bundle.includes("sdk")) {
-         
           chrome.runtime.sendMessage({
             buildType: "pega-app",
             appType: "Pega React SDK",
@@ -69,14 +68,12 @@ const identifyAppType = () => {
       const main = res.toLocaleLowerCase();
       if (main.includes("pega")) {
         if (main.includes("sdk")) {
-         
           chrome.runtime.sendMessage({
             reactBuildType: "pega-app",
             appType: "Pega Angular SDK",
           });
           getAngularSDKDetails(main);
         } else if (main.includes("sp-a")) {
-        
           chrome.runtime.sendMessage({
             reactBuildType: "pega-app",
             appType: "Pega Angular Starter Pack",
@@ -85,7 +82,7 @@ const identifyAppType = () => {
         }
       } else {
         // angular app is not pega based
-       
+
         setNotSupportedData();
       }
     });
@@ -94,8 +91,8 @@ const identifyAppType = () => {
       buildType: "pega-app",
       appType: "Cosmos React",
     });
-    issconstellationFileAvailable = true;
-    getPegaCosmosDetails();
+
+    getPegaCosmosDetails(constellationFileForCosmos.name);
   } else {
     setNotSupportedData();
   }
@@ -225,8 +222,14 @@ window.addEventListener(
 );
 
 // *********************************** Cosmos ******************************************************
-function getPegaCosmosDetails() {
+function getPegaCosmosDetails(fileName) {
   applicationType = "Cosmos React";
+  const indexOfConstellationURL = fileName.indexOf("c11n") + 4;
+  constellationURL = fileName.substring(0, indexOfConstellationURL);
+  constellationVersion = fileName.substring(
+    indexOfConstellationURL + 1,
+    indexOfConstellationURL + 10
+  );
 }
 
 // ******************************************** Angular SDK *************************************
