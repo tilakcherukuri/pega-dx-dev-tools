@@ -1,11 +1,11 @@
-let issconstellationFileAvailable = false
-let pegaPlatformVersion = ""
-let pegaPlatformURL = ""
-let applicationVersion = ""
-let thirdPartyComponentVersion = ""
-let applicationType = ""
-let constellationURL = ""
-let activeTabId = ""
+let pegaPlatformVersion = "";
+let pegaPlatformURL = "";
+let applicationVersion = "";
+let thirdPartyComponentVersion = "";
+let applicationType = "";
+let constellationURL = "";
+let constellationVersion = "";
+let activeTabId = "";
 
 // *************************** Sets values to local storage *************************************
 function setValuesToLocalStorage(activeTabId) {
@@ -17,7 +17,8 @@ function setValuesToLocalStorage(activeTabId) {
     applicationType,
     constellationURL,
     pegaPlatformVersion,
-  })
+    constellationVersion,
+  });
 }
 
 //************************************** Identifies the type of app********************************** */
@@ -89,16 +90,16 @@ const identifyAppType = () => {
       } else {
         // angular app is not pega based
 
-        setNotSupportedData()
+        setNotSupportedData();
       }
     })
   } else if (constellationFileForCosmos) {
     chrome.runtime.sendMessage({
       buildType: "pega-app",
       appType: "Cosmos React",
-    })
-    issconstellationFileAvailable = true
-    getPegaCosmosDetails()
+    });
+
+    getPegaCosmosDetails(constellationFileForCosmos.name);
   } else {
     setNotSupportedData()
   }
@@ -245,8 +246,14 @@ window.addEventListener(
 )
 
 // *********************************** Cosmos ******************************************************
-function getPegaCosmosDetails() {
-  applicationType = "Cosmos React"
+function getPegaCosmosDetails(fileName) {
+  applicationType = "Cosmos React";
+  const indexOfConstellationURL = fileName.indexOf("c11n") + 4;
+  constellationURL = fileName.substring(0, indexOfConstellationURL);
+  constellationVersion = fileName.substring(
+    indexOfConstellationURL + 1,
+    indexOfConstellationURL + 10
+  );
 }
 
 // ******************************************** Angular SDK *************************************
