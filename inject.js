@@ -18,23 +18,38 @@ window.addEventListener("_SDK_Details_", function (e) {
   });
 });
 
+// var timer = setInterval(() => {
+//   forCosmosReact();
+// }, 1000);
+// const forCosmosReact = () => {
+//   console.log("*********");
+//   if (window.PCore) {
+//     console.log("*********", window.PCore.getPCoreVersion());
+//     PCore.getPubSubUtils().subscribe((res) => {
+//       console.log(res);
+//     });
+//     pegaPlatformVersion = window.PCore.getPCoreVersion();
+//     window.postMessage({
+//       type: "FROM_INJECTED_SCRIPT",
+//       pegaPlatformURL,
+//       applicationVersion,
+//       thirdPartyComponentVersion,
+//       pegaPlatformVersion,
+//     });
+//     clearInterval(timer);
+//   }
+// };
+
+/* COSMOS-REACT-FINDER */
 var timer = setInterval(() => {
-  forCosmosReact();
+  identifyCosmosReact();
 }, 1000);
-const forCosmosReact = () => {
-  console.log("*********");
-  if (window.PCore) {
-    console.log("*********", window.PCore.getPCoreVersion());
-    PCore.getPubSubUtils().subscribe((res) => {
-      console.log(res);
-    });
+const identifyCosmosReact = () => {
+  if (window.PCore && window.React) {
     pegaPlatformVersion = window.PCore.getPCoreVersion();
     window.postMessage({
       type: "FROM_INJECTED_SCRIPT",
-      pegaPlatformURL,
-      applicationVersion,
-      thirdPartyComponentVersion,
-      pegaPlatformVersion,
+      buildType: "pega-app",
     });
     clearInterval(timer);
   }
