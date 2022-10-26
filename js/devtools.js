@@ -17,9 +17,20 @@ chrome.devtools.network.onRequestFinished.addListener((request) => {
     time: request.time,
     startedDateTime: request.startedDateTime,
   };
+  request.getContent((body) => {
+    chrome.runtime.sendMessage({
+      id: requestIDCounter,
+      type: "networkdata",
+      details: request,
+      body: body,
+      details_filtered: req_obj,
+    });
+  });
+  requestIDCounter++;
+  /* //Dont delete below code
   chrome.runtime.sendMessage({
     type: "networkdata",
     details: req_obj,
     details_filtered: req_obj,
-  });
+  });*/
 });
