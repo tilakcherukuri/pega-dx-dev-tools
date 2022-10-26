@@ -9,7 +9,7 @@ let activeTabId = "";
 
 // *************************** Sets values to local storage *************************************
 function setValuesToLocalStorage(activeTabId) {
-  debugger;
+
   chrome.storage.local.set({
     activeTabId,
     thirdPartyComponentVersion,
@@ -23,7 +23,6 @@ function setValuesToLocalStorage(activeTabId) {
 
 //************************************** Identifies the type of app********************************** */
 const identifyAppType = () => {
-  console.log("here");
   // Dummy Message to get Tab ID
   chrome.runtime.sendMessage({ text: "Get Active Tab ID" }, (tabId) => {
     //console.log(tabId);
