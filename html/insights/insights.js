@@ -125,3 +125,9 @@ let showEmptyDatas = () => {
 };
 
 showEmptyDatas();
+
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  if (request.type === "networkdata") {
+    console.log("listened to message", request);
+  }
+});
