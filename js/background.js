@@ -68,7 +68,10 @@ chrome.alarms.onAlarm.addListener((alarm) => {
     ], function(res) {
     console.log("selectedServiceUrl="+ res.selectedServiceUrl+ ", showServiceUrlNotification="+res.notificationSelection+", appDefSettings="+res.appDefSettings);
 
-    if (alarm.name === "ServiceUrlAlarm" && res.notificationSelection && res.appDefSettings) {
+    if (alarm.name === "ServiceUrlAlarm" 
+    && (res.selectedServiceUrl == "" || res.selectedServiceUrl == undefined)
+    && res.notificationSelection 
+    && res.appDefSettings) {
       console.log("Trigger ServiceUrlAlarm Notification");
       registration.showNotification("Warning", {
         body: "Please configure the Service Url from Options page!",
