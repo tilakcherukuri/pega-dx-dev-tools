@@ -1,0 +1,71 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/assets/images/logo.png" />
+    <link rel="stylesheet" href="/css/panel.css" />
+    <title>Pega DX Preferences</title>
+  </head>
+  <body>
+    <div class="wrapper">
+    <p><h2>&#8801; Preferences</h2></p>
+    <hr class="hrClass">
+    <h3 class="optiontitle">&#9881; Service URLs</h3> 
+    <p>  
+      <div class="container">
+        <table id="tbl" class="tblInput">
+            <thead class="tblHdr">
+                <tr>
+                  <th style="color:#7379c1">&#10065;&#10065;</th>
+                  <th>Environment*</th>
+                  <th>Service URL*</th>
+                  <th colspan="2">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tblbody">
+                <tr>
+                  <td class="td-data"></td>
+                  <td class="td-data"><input type="text" class="tblInput servtype" id="txtenv_defname" placeholder="Environment" value=""></td>
+                  <td class="td-data"><input type="text" class="tblInput servurl" id="txtservice_defurl" placeholder="Service URL" value=""></td>
+                  <td class="td-data"><button id="btnaddRow" class="tblBtnAddClass">&#10010;</button></td>
+                  <td class="td-data"></td>
+                </tr>
+            </tbody>
+        </table>
+      </div> 
+    </p> 
+    <span id="tblmsg" class="msgClass"></span>
+    <hr class="hrClass">
+    <h3 class="optiontitle">&#9881; Tab Options</h3>
+    <input type="checkbox" id="Overview" role="options" checked disabled>Overview
+    <input type="checkbox" id="Network" role="options" checked disabled>API Traffic
+    <input type="checkbox" id="Insights" role="options" checked disabled>Insights
+    <input type="checkbox" id="References" role="options" checked disabled>References
+    <input type="checkbox" id="Scripts" role="options" >JS Content
+    <input type="checkbox" id="Console" role="options" >Logs
+    <div><br/></div>
+    <div><hr class="hrClass"></div>
+    
+    <h3 class="optiontitle">&#9881; Notification Preferences</h3>
+    <p>
+      <label class="switch">
+        <input type="checkbox" id="notifyuser">
+        <span class="slider round"></span>
+      </label>
+    </p>
+    <hr class="hrClass">     
+    <p>
+      <div>
+        <input type="button" value="Save" id="saveBtn" class="btnClass">
+        <input type="button" value="Reset" id="resetBtn" class="btnClass">
+      </div>
+    </p>
+    <p id="info"></p>
+    <div id="msg" class="msgClass"></div>
+    <!-- Footer Text -->
+    <div>
+      <p class="footerClass"> Ver. 1.0.0 Developed by : GCS-UPX Team Hackathon, Pegasystems Inc.</p>
+    </div>
+  </body>
+  <script src="/js/options.js"></script>
+</html>

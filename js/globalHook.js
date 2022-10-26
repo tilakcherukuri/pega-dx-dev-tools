@@ -7,10 +7,25 @@ let applicationType = "";
 let constellationURL = "";
 let activeTabId = "";
 
+// *************************** Sets values to local storage *************************************
+function setValuesToLocalStorage(activeTabId) {
+
+  chrome.storage.local.set({
+    activeTabId,
+    thirdPartyComponentVersion,
+    pegaPlatformURL,
+    applicationVersion,
+    applicationType,
+    constellationURL,
+    pegaPlatformVersion,
+  });
+}
+
 //************************************** Identifies the type of app********************************** */
 const identifyAppType = () => {
   // Dummy Message to get Tab ID
   chrome.runtime.sendMessage({ text: "Get Active Tab ID" }, (tabId) => {
+    //console.log(tabId);
     activeTabId = tabId.tab;
   });
 
@@ -30,25 +45,22 @@ const identifyAppType = () => {
       const bundle = res.toLocaleLowerCase();
       if (bundle.includes("pega")) {
         if (bundle.includes("sdk")) {
-          setAppDetailsStorage("Pega React SDK");
+         
           chrome.runtime.sendMessage({
             buildType: "pega-app",
             appType: "Pega React SDK",
           });
-        }
-        if (bundle.includes("sp-r")) {
-          setAppDetailsStorage("Pega React Starter Pack");
+          getReactSDKDetails(bundle);
+        } else if (bundle.includes("sp-r")) {
           chrome.runtime.sendMessage({
             buildType: "pega-app",
             appType: "Pega React Starter Pack",
           });
+          getReactSPDetails(bundle);
         }
       } else {
         /* react app is not pega based */
-        setAppDetailsStorage("Not Pega React");
-        chrome.runtime.sendMessage({
-          buildType: "disabled",
-        });
+        setNotSupportedData();
       }
     });
   } // Angular SDK / Angular SP
@@ -57,30 +69,35 @@ const identifyAppType = () => {
       const main = res.toLocaleLowerCase();
       if (main.includes("pega")) {
         if (main.includes("sdk")) {
-          setAppDetailsStorage("Pega Angular SDK");
+         
           chrome.runtime.sendMessage({
             reactBuildType: "pega-app",
             appType: "Pega Angular SDK",
           });
+          getAngularSDKDetails(main);
         } else if (main.includes("sp-a")) {
-          setAppDetailsStorage("Pega Angular Starter Pack");
+        
           chrome.runtime.sendMessage({
             reactBuildType: "pega-app",
             appType: "Pega Angular Starter Pack",
           });
+          getAngularSPDetails();
         }
       } else {
         // angular app is not pega based
-        setAppDetailsStorage("Not Pega Angular");
+       
         setNotSupportedData();
       }
     });
   } else if (constellationFileForCosmos) {
-    issconstellationFileAvailable = true;
-  } else {
     chrome.runtime.sendMessage({
-      buildType: "disabled",
+      buildType: "pega-app",
+      appType: "Cosmos React",
     });
+    issconstellationFileAvailable = true;
+    getPegaCosmosDetails();
+  } else {
+    setNotSupportedData();
   }
 };
 
@@ -88,7 +105,7 @@ const fetchFileData = (jsFile) => {
   return fetch(jsFile).then((response) => response.text());
 };
 
-/* START INJECT CONTENT SCRIPT */
+/********************************************** START INJECT CONTENT SCRIPT *******************************/
 /**
  * injectScript - Inject internal script to available access to the `window`
  *
@@ -107,26 +124,6 @@ injectScript(chrome.runtime.getURL("inject.js"), "body");
 
 /* END INJECT CONTENT SCRIPT */
 
-window.addEventListener(
-  "message",
-  function (event) {
-    if (event.data.type && event.data.type == "FROM_INJECTED_SCRIPT") {
-      /* COSMOS -REACT */
-      if (event.data.buildType && issconstellationFileAvailable) {
-        setAppDetailsStorage("Cosmos React");
-        chrome.runtime.sendMessage({
-          buildType: "pega-app",
-          appType: "Cosmos React",
-        });
-      }
-    }
-    else{
-      setAppDetailsStorage("Not Pega Cosmos");
-    }
-  },
-  false
-);
-
 /* Identify the build type*/
 identifyAppType();
 
@@ -138,11 +135,125 @@ function setNotSupportedData() {
   });
 }
 
+// ***************************** React SP ***********************************************************
+function getReactSPDetails(bundle) {
+  applicationType = "Pega React Starter Pack";
+  const indexOfReactVersion = bundle.indexOf("reactversion =") + 15;
+  thirdPartyComponentVersion = bundle.substring(
+    indexOfReactVersion,
+    bundle.indexOf(";", indexOfReactVersion)
+  );
+  thirdPartyComponentVersion = thirdPartyComponentVersion.replaceAll("'", "");
+  const indexOfSPRVersion = bundle.indexOf("sp-r") + 4;
+  applicationVersion =
+    "SP-R" +
+    bundle.substring(indexOfSPRVersion, bundle.indexOf('"', indexOfSPRVersion));
 
-function setAppDetailsStorage(appType){
-  chrome.storage.local.set({
-    applicationType:appType
-    
+  const indexOfURL = bundle.indexOf("pegaurl:") + 9;
+  pegaPlatformURL = bundle.substring(
+    indexOfURL,
+    bundle.indexOf(",", indexOfURL)
+  );
+  pegaPlatformURL = pegaPlatformURL.replaceAll('"', "");
+  setValuesToLocalStorage(activeTabId);
+}
+
+// *********************************************React SDK ************************************************
+function getReactSDKDetails(bundle) {
+  window.dispatchEvent(
+    new CustomEvent("_SDK_Details_", {
+      detail: {
+        message: "React Data",
+      },
+    })
+  );
+  applicationType = "Pega React SDK";
+  const indexOfReactVersion = bundle.indexOf("reactversion =") + 15;
+  thirdPartyComponentVersion = bundle.substring(
+    indexOfReactVersion,
+    bundle.indexOf(";", indexOfReactVersion)
+  );
+  thirdPartyComponentVersion = thirdPartyComponentVersion.replaceAll("'", "");
+  const indexOfSDKVersion = bundle.indexOf("sdkversion =") + 12;
+  applicationVersion = bundle.substring(
+    indexOfSDKVersion,
+    bundle.indexOf(";", indexOfSDKVersion)
+  );
+  applicationVersion = applicationVersion.replaceAll('"', "");
+
+  fetchFileData("sdk-config.json").then((data) => {
+    const dt = JSON.parse(data);
+    pegaPlatformURL = dt["serverConfig"]["infinityRestServerUrl"];
   });
+}
 
+// ************************************************ Angular SP ***********************************
+function getAngularSPDetails() {
+  window.dispatchEvent(
+    new CustomEvent("_Angular_Details_", {
+      detail: {
+        message: "Angular Data",
+      },
+    })
+  );
+  applicationType = "Pega Angular Starter Pack";
+}
+
+// ********************************* Connect to content.js file ***************************************
+
+window.addEventListener(
+  "message",
+  function (event) {
+    if (event.data.type && event.data.type == "FROM_INJECTED_SCRIPT") {
+      pegaPlatformURL =
+        event.data.pegaPlatformURL != ""
+          ? event.data.pegaPlatformURL
+          : pegaPlatformURL;
+      applicationVersion =
+        event.data.applicationVersion != ""
+          ? event.data.applicationVersion
+          : applicationVersion;
+      thirdPartyComponentVersion =
+        event.data.thirdPartyComponentVersion != ""
+          ? event.data.thirdPartyComponentVersion
+          : thirdPartyComponentVersion;
+      pegaPlatformVersion = event.data.pegaPlatformVersion;
+      setValuesToLocalStorage(activeTabId);
+    }
+  },
+  false
+);
+
+// *********************************** Cosmos ******************************************************
+function getPegaCosmosDetails() {
+  applicationType = "Cosmos React";
+}
+
+// ******************************************** Angular SDK *************************************
+function getAngularSDKDetails(main) {
+  applicationType = "Pega Angular SDK";
+  const indexOfSDKVersion = main.indexOf("sdkversion =") + 12;
+  applicationVersion = main.substring(
+    indexOfSDKVersion,
+    main.indexOf(";", indexOfSDKVersion)
+  );
+
+  applicationVersion = applicationVersion.replaceAll('"', "");
+
+  const rootElem = document.querySelector("[ng-version]");
+  thirdPartyComponentVersion =
+    rootElem.getAttribute("ng-version") ?? "Not Found";
+
+  window.dispatchEvent(
+    new CustomEvent("_SDK_Details_", {
+      detail: {
+        message: "Angular Data",
+      },
+    })
+  );
+
+  fetchFileData("sdk-config.json").then((data) => {
+    const dt = JSON.parse(data);
+    pegaPlatformURL = dt["serverConfig"]["infinityRestServerUrl"];
+  });
 }
