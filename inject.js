@@ -4,7 +4,7 @@ let thirdPartyComponentVersion = "";
 let pegaPlatformVersion = "";
 
 window.addEventListener("_SDK_Details_", function (e) {
-  document.addEventListener("SdkConstellationReady", () => {
+  document.addEventListener("ConstellationReady", () => {
     window.PCore.onPCoreReady((e) => {
       pegaPlatformVersion = PCore.getPCoreVersion();
       window.postMessage({
@@ -49,7 +49,10 @@ const identifyCosmosReact = () => {
     pegaPlatformVersion = window.PCore.getPCoreVersion();
     window.postMessage({
       type: "FROM_INJECTED_SCRIPT",
-      buildType: "pega-app",
+      pegaPlatformURL,
+      applicationVersion,
+      thirdPartyComponentVersion,
+      pegaPlatformVersion,
     });
     clearInterval(timer);
   }
