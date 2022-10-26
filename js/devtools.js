@@ -4,3 +4,21 @@ chrome.devtools.panels.create(
   "/html/panel/panel.html",
   function (panel) {}
 );
+<<<<<<< Updated upstream
+=======
+
+window.localStorage.removeItem("sync_q");
+window.localStorage.removeItem("prev_sync_q");
+var requestIDCounter = 0;
+chrome.devtools.network.onRequestFinished.addListener((request) => {
+
+  request.getContent( (body) => {
+    chrome.runtime.sendMessage(
+      { id:requestIDCounter, type: "networkdata", details: request, body:body },
+      function (response) {
+      }
+    );
+  });
+  requestIDCounter++;
+});
+>>>>>>> Stashed changes
