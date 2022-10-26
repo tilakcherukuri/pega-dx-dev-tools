@@ -5,8 +5,8 @@ chrome.devtools.panels.create(
   function (panel) {}
 );
 
-window.localStorage.removeItem("sync_q");
-window.localStorage.removeItem("prev_sync_q");
+window.localStorage.removeItem("lowest_val");
+window.localStorage.removeItem("highest_val");
 var requestIDCounter = 0;
 var serviceURLToTrace = "";
 chrome.devtools.network.onRequestFinished.addListener((request) => {
@@ -34,7 +34,13 @@ chrome.devtools.network.onRequestFinished.addListener((request) => {
    //   }
    // }
     
+
   });
   requestIDCounter++;
-
+  /* //Dont delete below code
+  chrome.runtime.sendMessage({
+    type: "networkdata",
+    details: req_obj,
+    details_filtered: req_obj,
+  });*/
 });

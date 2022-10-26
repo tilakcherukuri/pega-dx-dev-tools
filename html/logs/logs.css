@@ -1,5 +1,22 @@
-.MainLogs{
-    background-color: #eee;
-    color: #1f023a;
+body{
+    background-color: #fff;
+}
 
+.container{
+width: 100% !important;
+}
+
+.alert{
+    margin-bottom:5px;
+    padding:5px;
+}
+
+.logText{
+    margin:0px;
+}
+
+
+.row{
+    margin-left:initial;
+    margin-right:initial;
 }

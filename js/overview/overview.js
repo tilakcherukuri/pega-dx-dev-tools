@@ -1,16 +1,26 @@
+chrome.runtime.sendMessage({
+  type: "log",
+  log: {
+    type: "Info",
+    message: "form overview",
+    timestamp: "July 21, 1983 01:15:00",
+  },
+});
+
 const applicationVersionElem = document.getElementById("application-version");
 const thirdPartyComponentVersionElem = document.getElementById(
   "third-party-component-version"
 );
 const applicationTypeElem = document.getElementById("application-type");
 const constellationURLElem = document.getElementById("constellation-URL");
+const constellationVersionElem = document.getElementById(
+  "constellation-service-version"
+);
 const pegaPlatformVersionElem = document.getElementById(
   "pega-platform-version"
 );
 const pegaPlatformURLElem = document.getElementById("pega-platform-URL");
-const constellationContainerElem = document.getElementById(
-  "constellation-url-container"
-);
+
 const thirdPartyHeadingElem = document.getElementById("third-party-heading");
 const appLogoElem = document.getElementById("app-logo");
 
@@ -25,6 +35,7 @@ chrome.storage.local.get(
     "applicationType",
     "constellationURL",
     "pegaPlatformVersion",
+    "constellationVersion",
   ],
   (res) => {
     appDetails = res;
@@ -46,23 +57,20 @@ chrome.storage.local.get(
       constellationURLElem.textContent =
         appDetails["constellationURL"] != ""
           ? appDetails["constellationURL"]
-          : "Not found";
+          : "Not found, please set in extenstion options.";
       pegaPlatformVersionElem.textContent =
         appDetails["pegaPlatformVersion"] != ""
           ? appDetails["pegaPlatformVersion"]
+          : "Not found";
+      constellationVersionElem.textContent =
+        appDetails["constellationVersion"] != ""
+          ? appDetails["constellationVersion"]
           : "Not found";
       applicationTypeElem.textContent =
         appDetails["applicationType"] != ""
           ? appDetails["applicationType"]
           : "Not found";
       applicationTypeChanges();
-    } else if (
-      appDetails["applicationType"]
-        .toLocaleLowerCase()
-        .includes("not supported")
-    ) {
-      document.getElementById("main-details").style.display = "none";
-      document.getElementById("not-supported-details").style.display = "block";
     }
   }
 );
@@ -77,10 +85,17 @@ function applicationTypeChanges() {
   if (appDetails["applicationType"].toLocaleLowerCase().includes("starter")) {
     document.getElementById("pega-platform-version-container").style.display =
       "none";
-    constellationContainerElem.style.display = "none";
-  }
-  if (appDetails["applicationType"].toLocaleLowerCase().includes("sdk")) {
-    constellationContainerElem.style.display = "none";
+    const constellationContainerElems = Array.from(
+      document.getElementsByClassName("constellation-container")
+    );
+    constellationContainerElems.forEach((e) => (e.style.display = "none"));
+  } else if (
+    appDetails["applicationType"].toLocaleLowerCase().includes("sdk")
+  ) {
+    const constellationContainerElems = Array.from(
+      document.getElementsByClassName("constellation-container")
+    );
+    constellationContainerElems.forEach((e) => (e.style.display = "none"));
   }
 
   if (appDetails["applicationType"].toLocaleLowerCase().includes("cosmos")) {

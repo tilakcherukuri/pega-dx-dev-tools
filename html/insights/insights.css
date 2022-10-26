@@ -28,3 +28,14 @@
 .card-title{
     margin-bottom: 2px;
 }
+.card-body{
+    padding: 0.8rem;
+}
+h6.card-title{
+    font-size:0.8rem;
+}
+small.notes{
+    font-size: 9px;
+    float: right;
+    margin-top: -20px;
+}
