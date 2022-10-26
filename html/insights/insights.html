@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../assets/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="../insights/insights.css" />
+    <script src="./apexcharts.js"></script>
+  </head>
+  <body>
+    <div class="row g-2">
+      <div class="col-sm-7">
+        <div class="card text-start apidetails">
+          <div class="card-body">
+            <h6 class="card-title">
+              API load time graph &nbsp;
+              <small class="badge badge-pill badge-success">Live</small>
+            </h6>
+            <div class="card-text">
+              <div class="chartwrapper">
+                <div id="chart"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-5">
+        <div class="card text-start apistatistics">
+          <div class="card-body">
+            <h6 class="card-title">API Statistics</h6>
+            <br />
+            <div class="card-text">
+              <p>
+                API with Lowest load time
+                <small class="badge badge-pill badge-success">Live</small>
+              </p>
+              <div id="lowestLoad"></div>
+              <p>
+                API with highest load time
+                <small class="badge badge-pill badge-success">Live</small>
+              </p>
+              <div id="highestLoad"></div>
+
+              <p>
+                Network Traffics
+                <small class="badge badge-pill badge-success">Live</small>
+              </p>
+              <div style="overflow: scroll">
+                <table class="table table-sm" id="networktable">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">DX API</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Duration</th>
+                      <th>Timestamp</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./insights.js"></script>
+  </body>
+</html>
