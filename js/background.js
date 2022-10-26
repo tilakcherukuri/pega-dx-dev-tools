@@ -72,4 +72,8 @@ chrome.alarms.onAlarm.addListener((alarm) => {
       });
     }
   });
+<<<<<<< Updated upstream
 });
+=======
+});
+>>>>>>> Stashed changes
