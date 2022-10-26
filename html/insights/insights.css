@@ -1,0 +1,30 @@
+.insights table,th,td {
+    font-size: 10px;
+}
+.insights th {
+    font-size: 10px !important;
+}
+.insights td {
+    max-width: 300px;
+}
+
+.apistatistics .card-text p {
+    font-size: 0.7em !important;
+    margin-bottom: 0.2em;
+}
+
+.apistatistics .alert-success,
+.alert-danger,
+.alert-warning {
+    font-size: 0.7em !important;
+}
+
+.table .thead-dark th {
+    font-size: 10px;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.card-title{
+    margin-bottom: 2px;
+}

@@ -37,22 +37,17 @@
           >
             <i class="bi bi-reception-4"></i> API Traffic
           </button>
-          <button
-            role="tab"
-            class="tab-header"
-            aria-selected="false"
-            id="Console"
-          >
-            <i class="bi bi-binoculars"></i> Console
+          <button role="tab" class="tab-header" aria-selected="false" id="Console">
+            <i class="bi bi-binoculars"></i> Logs
           </button>
           <button
             role="tab"
             class="tab-header"
             aria-selected="false"
-            id="Scripting"
+            id="Scripts"
             tab-remove="false"
           >
-            <i class="bi bi-braces"></i> Scripting
+            <i class="bi bi-braces"></i> JS Content
           </button>
           <button
             role="tab"
@@ -61,7 +56,7 @@
             id="References"
             tab-remove="false"
           >
-            <i class="bi bi-book"></i> References
+            <i class="bi bi-book"></i> Need Help
           </button>
           <button
             role="tab"
@@ -83,40 +78,44 @@
             ></iframe>
           </div>
         </div>
-        <div
-          role="tabpanel"
-          aria-labelledby="Network"
-          hidden
-          style="padding: 0px"
-        >
+        <div role="tabpanel" aria-labelledby="Network" hidden style="padding: 0px;">
           <iframe
-            id="ServiceTrafficFrame"
-            width="100%"
-            height="500px"
-            src="../service-traffic/ServiceTraffic.html"
-            style="border: none"
-          ></iframe>
+          id="ServiceTrafficFrame"
+          width="100%"
+          height="500px"
+          src="../api-traffic/ApiTraffic.html"
+          style="border: none"
+        ></iframe>
         </div>
-        <div role="tabpanel" aria-labelledby="Scripting" hidden>
+        <div role="tabpanel" aria-labelledby="Scripts" hidden>
           <iframe
             id="scriptFrame"
             width="100%"
             height="500px"
-            src="../scripting/popup.html"
-            allow="clipboard-read; clipboard-write"
+            src="../jsContent/showScriptsLoaded.html"
+            allow="clipboard-read; clipboard-write "
           ></iframe>
         </div>
-        <div role="tabpanel" aria-labelledby="Console" hidden>
-          <p>Add Console Code here!</p>
-        </div>
-        <div role="tabpanel" aria-labelledby="References" hidden style="padding:0px;">
+        <div role="tabpanel" aria-labelledby="Console" hidden style="padding:0px;">
+          
           <iframe
-          id="refFrame"
+          id="logsFrame"
           width="100%"
           height="450px"
-          src="../reference/reference.html"
+          src="../logs/logs.html"
           style="margin:0px;"
         ></iframe>
+        </div>
+        <div role="tabpanel" aria-labelledby="References" hidden style="padding:0px;">
+         
+          <iframe
+          id="needHelpFrame"
+          width="100%"
+          height="450px"
+          src="../NeedHelp/NeedHelp.html"
+          style="margin:0px;"
+        ></iframe>
+          
         </div>
         <div role="tabpanel" aria-labelledby="Insights" hidden>
           <iframe
