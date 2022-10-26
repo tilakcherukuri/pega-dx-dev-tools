@@ -4,9 +4,146 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>API Traffic</title>
+   
 </head>
+<style>
+.trafficLog {
+    width: 100%;
+    height: 475px;
+    display: flex;
+}
+
+#separator {
+    cursor: col-resize;
+    background-color: #aaa;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='30'><path d='M2 0 v30 M5 0 v30 M8 0 v30' fill='none' stroke='black'/></svg>");
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 6px;
+    height: 100%;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#endpoint {
+    background-color: #eee;
+    width: 40%;
+    height: 100%;
+    min-width: 10px;
+    overflow: auto;
+}
+
+#details {
+    background-color: #eee;
+    width: 60%;
+    height: 100%;
+    min-width: 10px;
+}
+#request {
+    background-color: #eee;
+    width: 50%;
+    height: 100%;
+    min-width: 10px;
+    overflow: auto;
+}
+
+#response {
+    background-color: #eee;
+    width: 50%;
+    height: 100%;
+    min-width: 10px;
+    overflow: auto;
+}
+#separator2 {
+    cursor: col-resize;
+    background-color: #aaa;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='30'><path d='M2 0 v30 M5 0 v30 M8 0 v30' fill='none' stroke='black'/></svg>");
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 6px;
+    height: 100%;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.service-traffic-info{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+body{
+    margin: 0;
+}
+.user-info{
+    margin: 5px;
+}
+th, td{
+    padding: 2px;
+}
+table{
+    border: none;
+}
+.show{
+    display: table-row;
+}
+.hide{
+    display: none;
+}
+.endpointRow:hover{
+    background-color: white;
+}
+.endpointRowSelected{
+    background-color: #3386F6;
+}
+.endpointRow{
+    background-color: #eee;
+}
+</style>
 <body>
+    <div class="service-traffic-info">
+        <p class="user-info"> Traffic from Pega DX Api or Constellation service will be automatically recorded here.</p>
+    </div>
+    <div class="trafficLog">
+        <div id="endpoint">
+            <table width="100%" >
+                <thead style="background-color: #aaaaaab3;">
+                    <th>Endpoint</th>
+                </thead>
+                <tbody id="endpointTBody">
+
+                </tbody>
+            </table>
+        </div>
+        <div id="separator" ></div>
+        <div id="details" style="display: flex">
+            <div id="request">
+                <table width="100%" >
+                    <thead style="background-color: #aaaaaab3;">
+                        <th>Request</th>
+                    </thead>
+                    <tbody id="requestTBody">
+
+                    </tbody>
+                </table>
+            </div>
+            <div id="separator2" ></div>
+            <div id="response" >
+                <table width="100%" >
+                    <thead style="background-color: #aaaaaab3;">
+                        <th>Response</th>
+                    </thead>
+                    <tbody id="responseTBody">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
     
+    <script type="text/javascript" src="../../js/api-traffic/api-traffic.js"></script>
+    <script src="../../js/notifications.js"></script>
+
 </body>
 </html>
