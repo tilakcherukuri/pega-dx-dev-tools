@@ -5,7 +5,7 @@ window.localStorage.removeItem("prev_sync_q");
 var options = {
   series: [],
   chart: {
-    height: 350,
+    height: 250,
     type: "rangeBar",
   },
   plotOptions: {
@@ -113,7 +113,6 @@ let showlatencyData = async (item) => {
 };
 
 let showEmptyDatas = () => {
-  debugger;
   let div = document.getElementById("highestLoad");
   let html = `<div class="alert alert-warning" role="alert"> -- No Data available -- </div>`;
   html = html.trim();
