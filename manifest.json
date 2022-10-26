@@ -20,5 +20,11 @@
   "action": {
     "default_title": "Pega DX Developer Tools",
     "default_popup": "/html/popups/disabled.html"
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["inject.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }
