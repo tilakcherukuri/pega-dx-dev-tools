@@ -16,7 +16,7 @@ chrome.storage.sync.get([
     selectedServiceUrlValue = res.selectedServiceUrl;
 });
 
-function publishnotification(notifications_options, notification_preferences){
+function publishNotification(notifications_options, notification_preferences){
     if(notification_preferences){
         chrome.notifications.create(notifications_options, function(){
             console.log("Triggered Notification Successfully!");
