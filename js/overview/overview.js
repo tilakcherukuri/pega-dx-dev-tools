@@ -1,12 +1,3 @@
-chrome.runtime.sendMessage({
-  type: "log",
-  log: {
-    type: "Info",
-    message: "form overview",
-    timestamp: "July 21, 1983 01:15:00",
-  },
-});
-
 const applicationVersionElem = document.getElementById("application-version");
 const thirdPartyComponentVersionElem = document.getElementById(
   "third-party-component-version"
@@ -82,6 +73,22 @@ const iconURLs = {
 };
 
 function applicationTypeChanges() {
+  chrome.runtime.sendMessage({
+    type: "log",
+    log: {
+      type: "Info",
+      message: "Pega DX Developer Tools is ready",
+      timestamp: new Date(),
+    },
+  });
+  chrome.runtime.sendMessage({
+    type: "log",
+    log: {
+      type: "Info",
+      message: "Overview Tab Intializing ...",
+      timestamp: new Date(),
+    },
+  });
   if (appDetails["applicationType"].toLocaleLowerCase().includes("starter")) {
     document.getElementById("pega-platform-version-container").style.display =
       "none";
@@ -113,4 +120,12 @@ function applicationTypeChanges() {
     thirdPartyHeadingElem.textContent = "React Version";
     appLogoElem.setAttribute("src", iconURLs.React);
   }
+  chrome.runtime.sendMessage({
+    type: "log",
+    log: {
+      type: "Info",
+      message: "Overview Tab Setup Completed",
+      timestamp: new Date(),
+    },
+  });
 }

@@ -57,7 +57,6 @@ const identifyAppType = () => {
             buildType: "pega-app",
             appType: "Pega React Starter Pack",
           })
-          console.log("************bundle", bundleFileForReact.name)
           if (bundleFileForReact.name.includes("main")) {
             getReactSPDetailsForProd(bundle)
           } else {
