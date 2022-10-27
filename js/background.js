@@ -88,7 +88,7 @@ function manageChromeStorageOnload(flag) {
   if (flag) { 
     chrome.storage.sync.get(['appDefSettings'], function(res){
       // Rest to the default table
-      var tblDef = "<thead class='tblHdr'><tr><th style='color:#7379c1'>❑❑</th><th>Environment*</th><th>Service URL*</th><th colspan='2'>Actions</th></tr></thead><tbody id='tblbody'><tr><td class='td-data'></td><td class='td-data'><input type='text' class='tblInput servtype' id='txtenv_defname' placeholder='Environment' value=''></td><td class='td-data'><input type='text' class='tblInput servurl' id='txtservice_defurl' placeholder='Service URL' value=''></td><td class='td-data'><button id='btnaddRow' class='tblBtnAddClass'>✚</button></td><td class='td-data'></td></tr></tbody>";
+      var tblDef = "<thead class='tblHdr'><tr><th style='color:#000'>❑❑</th><th>Environment*</th><th>Service URL*</th><th colspan='2'>Actions</th></tr></thead><tbody id='tblbody'><tr><td class='td-data'></td><td class='td-data'><input type='text' class='tblInput servtype' id='txtenv_defname' placeholder='Environment' value=''></td><td class='td-data'><input type='text' class='tblInput servurl' id='txtservice_defurl' placeholder='Service URL' value=''></td><td class='td-data'><button id='btnaddRow' class='tblBtnAddClass'>✚</button></td><td class='td-data'></td></tr></tbody>";
       
       if (res.appDefSettings == undefined || res.appDefSettings == false) {
         chrome.storage.sync.set({

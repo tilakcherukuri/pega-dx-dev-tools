@@ -43,15 +43,16 @@ dragElement( document.getElementById("separator"), "H" , "endpoint","details");
 dragElement( document.getElementById("separator2"), "H" , "request","response");
 
 var oldId = "";
-
+var oldClass = "";
 function showDetails(){
 if(oldId != ""){
     document.getElementById("req"+oldId).className="hide";
     document.getElementById("res"+oldId).className="hide";
-    document.getElementById(oldId).className="endpointRow";
+    document.getElementById(oldId).className=oldClass;
 }
 document.getElementById("req"+this.id).className="show";
 document.getElementById("res"+this.id).className="show";
+oldClass = document.getElementById(this.id).className;
 document.getElementById(this.id).className="endpointRowSelected";
 oldId = this.id;
 }

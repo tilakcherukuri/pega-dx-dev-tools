@@ -11,13 +11,20 @@ var msgr = document.getElementById("msgr");
 function refresh_options() {
   // Use default value for preferences
   chrome.storage.sync.get(
-    ["scriptsSelectionValue", "consoleSelectionValue"],
+    ["scriptsSelectionValue", 
+    "consoleSelectionValue",
+    "appDefSettings"],
     function (items) {
       hideScripts = items.scriptsSelectionValue;
       hideConsole = items.consoleSelectionValue;
       selectedServiceUrlValue = items.selectedServiceUrl;
-      notification_preferenceValue = items.notificationSelection;
 
+      if (!items.appDefSettings) {
+        notification_preferenceValue = false;
+      } else {
+        notification_preferenceValue = items.notificationSelection;
+      }
+      console.log('notification_preferenceValue='+notification_preferenceValue);
       // Check if Selected Service is available and Notify
       if (
         selectedServiceUrlValue == "" ||
@@ -29,7 +36,7 @@ function refresh_options() {
           message: "Please configure the Service Url from Options page!",
           iconUrl: "/assets/images/logo.png",
         };
-        publishNotification(notification_options, true);
+        publishNotification(notification_options, notification_preferenceValue);
       }
 
       // Focus Overview Tab and hide other Tabs
