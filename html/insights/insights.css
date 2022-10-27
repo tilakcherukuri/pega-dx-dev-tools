@@ -1,5 +1,5 @@
 .insights table,th,td {
-    font-size: 10px;
+    font-size: 0.5em;
 }
 .insights th {
     font-size: 10px !important;
@@ -16,11 +16,11 @@
 .apistatistics .alert-success,
 .alert-danger,
 .alert-warning {
-    font-size: 0.7em !important;
+    font-size: 0.6em !important;
 }
 
 .table .thead-dark th {
-    font-size: 10px;
+font-size: 0.6rem;
     letter-spacing: 1px;
     font-weight: 500;
 }
@@ -38,4 +38,7 @@ small.notes{
     font-size: 9px;
     float: right;
     margin-top: -20px;
+}
+.alert {
+    padding: 0.25rem 0.25rem;
 }
