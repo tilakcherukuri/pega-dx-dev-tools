@@ -90,7 +90,9 @@ let showlatencyData = async (item) => {
   }
   var tr = document.createElement("tr");
   var tds = `<td style="max-width:180px">${item.url}</td>
-      <td class="${cssClass}">${item.res_stats}/${item.res_code}</td>
+      <td class="${cssClass}">${item.res_stats}${
+    item.res_code ? "/" + item.res_code : ""
+  }</td>
       <td>${parseInt(item.time)} ms</td>
       <td>${item.startedDateTime}</td>`;
   tds = tds.trim();
