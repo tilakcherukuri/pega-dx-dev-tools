@@ -252,12 +252,17 @@ window.addEventListener(
 // *********************************** Cosmos ******************************************************
 function getPegaCosmosDetails(fileName) {
   applicationType = "Cosmos React";
-  const indexOfConstellationURL = fileName.indexOf("c11n") + 4;
-  constellationURL = fileName.substring(0, indexOfConstellationURL);
-  constellationVersion = fileName.substring(
-    indexOfConstellationURL + 1,
-    indexOfConstellationURL + 10
-  );
+  if (fileName.indexOf("c11n") > -1) {
+    const indexOfConstellationURL = fileName.indexOf("c11n") + 4;
+    constellationURL = fileName.substring(0, indexOfConstellationURL);
+    constellationVersion = fileName.substring(
+      indexOfConstellationURL + 1,
+      indexOfConstellationURL + 10
+    );
+  } else {
+    constellationURL = "Unable to retrieve Constellation URL";
+    constellationVersion = "Unable to retrieve Constellation URL";
+  }
 }
 
 // ******************************************** Angular SDK *************************************
