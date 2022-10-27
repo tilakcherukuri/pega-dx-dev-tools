@@ -13,6 +13,7 @@ function refresh_options() {
   chrome.storage.sync.get(
     ["scriptsSelectionValue", 
     "consoleSelectionValue",
+    "notificationSelection",
     "appDefSettings"],
     function (items) {
       hideScripts = items.scriptsSelectionValue;
@@ -24,7 +25,7 @@ function refresh_options() {
       } else {
         notification_preferenceValue = items.notificationSelection;
       }
-      console.log('notification_preferenceValue='+notification_preferenceValue);
+      //console.log('notification_preferenceValue='+notification_preferenceValue);
       // Check if Selected Service is available and Notify
       if (
         selectedServiceUrlValue == "" ||
