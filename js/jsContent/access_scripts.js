@@ -11,6 +11,19 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+var test = " ";
+chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
+  if (msg.type === "networkdata") {
+    console.log("url: " + msg.details.request.url);
+    var myUrl = msg.details.request.url;
+    if (myUrl.endsWith(".js")) {
+      test += "<li id= " + " >" + myUrl + "</li> " + "\n";
+      console.log("Jsfiles :" + test);
+      setJSInfo(test);
+    }
+  }
+});
+
 function accessJS() {
   chrome.tabs.query(
     {
@@ -35,7 +48,7 @@ function accessJS() {
             console.log("Whoops.. " + chrome.runtime.lastError.message);
             // Maybe explain that to the user too?
           } else {
-            setJSInfo(response);
+            //setJSInfo(response);
             // No errors, you can use entry
           }
         }
@@ -46,7 +59,7 @@ function accessJS() {
 function setJSInfo(info) {
   if (info !== undefined) {
     console.log(info.total);
-    document.getElementById("FileContent").innerHTML = info.total;
+    document.getElementById("FileContent").innerHTML = info;
   }
 }
 
