@@ -90,8 +90,6 @@ function applicationTypeChanges() {
     },
   });
   if (appDetails["applicationType"].toLocaleLowerCase().includes("starter")) {
-    document.getElementById("pega-platform-version-container").style.display =
-      "none";
     const constellationContainerElems = Array.from(
       document.getElementsByClassName("constellation-container")
     );
