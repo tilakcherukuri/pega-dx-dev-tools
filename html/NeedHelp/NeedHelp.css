@@ -5,7 +5,7 @@
 }
 
 .structure{
-    padding-top:5px;
+   /* padding-top:5px;*/
     padding-left:2px;
     padding-bottom:2px;
     margin-bottom:10px;
@@ -17,7 +17,7 @@
     font-size: 20px; 
     font-weight: 600; 
     line-height: 18px; 
-    margin: 0 0 10px;
+    margin: 0 0 20px;
     text-shadow: 5px 5px 6px #ffffff;
 }
 
@@ -56,12 +56,15 @@ body{
 }
 
 .refLogo{
-    width:150px;
-    height:60px;
+    width:148px;
+    height:56px;
     /*position:relative;
     top:0px;
     right: 40px;*/
     float:right;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+
 }
 
 .container{
