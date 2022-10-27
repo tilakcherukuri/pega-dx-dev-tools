@@ -143,9 +143,9 @@ let renderNewInsights = async (item) => {
   if (data_series.length > MAX_ITEM_TO_DISPLAY_IN_GRAPH - 1) {
     data_series.splice(0, 1);
   }
-  let url = item.url && item.url.split("/api") && item.url.split("/api")[1];
+  //let url = item.url && item.url.split("/api") && item.url.split("/api")[1];
   data_series.push({
-    x: url,
+    x: item.url,
     y: parseInt(item.time),
     fillColor:
       "#" + ((Math.random() * 0xffffff) << 0).toString(16).padStart(6, "0"),
@@ -166,7 +166,7 @@ chrome.runtime.onMessage.addListener(function (request) {
   if (request.type === "networkdata") {
     console.info("listened to message", request);
     let req_obj = request.details_filtered;
-    if (req_obj) {
+    if (req_obj && req_obj._resourceType === "xhr") {
       renderNewInsights(req_obj);
     }
   }
