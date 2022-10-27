@@ -57,7 +57,6 @@ const identifyAppType = () => {
             buildType: "pega-app",
             appType: "Pega React Starter Pack",
           })
-          console.log("************bundle", bundleFileForReact.name)
           if (bundleFileForReact.name.includes("main")) {
             getReactSPDetailsForProd(bundle)
           } else {
@@ -161,6 +160,7 @@ function getReactSPDetails(bundle) {
   pegaPlatformURL = pegaPlatformURL.replaceAll('"', "")
   setValuesToLocalStorage(activeTabId)
 }
+/* Function for Prod mode React-Starter-pack */
 function getReactSPDetailsForProd(bundle) {
   applicationType = "Pega React Starter Pack"
 
