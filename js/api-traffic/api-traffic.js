@@ -80,7 +80,9 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
             row.setAttribute("class","endpointRow");
         }
         const cell = document.createElement("td");
+        cell.setAttribute("style","cursor:pointer");
         const anchorTag = document.createElement("a");
+        anchorTag.setAttribute("style","word-break:break-all");
         const cellText = document.createTextNode(msg.details.request.url);
         anchorTag.appendChild(cellText);
         cell.appendChild(anchorTag);
