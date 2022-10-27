@@ -76,6 +76,14 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
             row.setAttribute("class","endpointRowOrange");
         }else if((""+msg.details.response.status).startsWith("4")){
             row.setAttribute("class","endpointRowRed");
+            chrome.runtime.sendMessage({
+                type: "log",
+                log: {
+                type: "Error",
+                message: "API Fairue with code"+msg.details.response.status+" URL - "+msg.details.request.url,
+                timestamp: new Date(),
+                },
+                });
         }else{
             row.setAttribute("class","endpointRow");
         }
