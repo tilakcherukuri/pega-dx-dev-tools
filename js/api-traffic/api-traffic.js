@@ -59,6 +59,14 @@ oldId = this.id;
 
 chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
     if (msg.type === "networkdata") {
+        chrome.runtime.sendMessage({
+            type: "log",
+            log: {
+              type: "Info",
+              message: "Network Tab Intializing ...",
+              timestamp: new Date(),
+            },
+          });
         const endpointTBody = document.getElementById("endpointTBody");
         const row = document.createElement("tr");
         row.setAttribute("id",msg.id);

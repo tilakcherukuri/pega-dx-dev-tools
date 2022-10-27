@@ -1,22 +1,36 @@
-body{
+body {
     background-color: #fff;
+    font-size: 12px;
 }
 
-.container{
-width: 100% !important;
+.thead-dark {
+    color: #fff;
+    background-color: #343a40;
+    border-color: #454d55;
+    font-weight: 500;
 }
 
-.alert{
-    margin-bottom:5px;
-    padding:5px;
+.container {
+    width: 100% !important;
+    margin-top: 20px;
 }
 
-.logText{
-    margin:0px;
+.header {
+    margin-top: 5px;
+    margin-bottom: 6px;
+    font-weight: bold;
 }
 
+.alert {
+    margin-bottom: 3px;
+    padding: 5px;
+}
 
-.row{
-    margin-left:initial;
-    margin-right:initial;
+.logText {
+    margin: 0px;
+}
+
+.row {
+    margin-left: initial;
+    margin-right: initial;
 }
