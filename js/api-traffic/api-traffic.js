@@ -94,12 +94,14 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
         const reqCell = document.createElement("td");
         const ul = document.createElement("ul");  
         const li = document.createElement("li");
+        li.setAttribute("style","word-break:break-word");
         const reqCellText = document.createTextNode("Method : "+msg.details.request.method);
         li.appendChild(reqCellText);
         ul.appendChild(li);
 
         msg.details.request.headers.map((ele,index)=>{
             const li = document.createElement("li");
+            li.setAttribute("style","word-break:break-word");
             const reqCellText = document.createTextNode(ele.name+":"+ele.value);
             li.appendChild(reqCellText);
             ul.appendChild(li);
@@ -115,20 +117,23 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
         const resCell = document.createElement("td");
         const rul = document.createElement("ul");  
         const rli = document.createElement("li");
+        rli.setAttribute("style","word-break:break-word");
         const resCellText = document.createTextNode("Status Code : "+msg.details.response.status+"-"+msg.details.response.httpVersion);
         rli.appendChild(resCellText);
         rul.appendChild(rli);
         msg.details.response.headers.map((ele,index)=>{
             const li = document.createElement("li");
+            li.setAttribute("style","word-break:break-word");
             const resCellText = document.createTextNode(ele.name+":"+ele.value);
             li.appendChild(resCellText);
             rul.appendChild(li);
         });
         resCell.appendChild(rul);
         const bodyCell = document.createElement("p");
+        bodyCell.setAttribute("style","word-break:break-all");
         const bodyTextNode = document.createTextNode("ResponseBody : "+msg.body);
         bodyCell.appendChild(bodyTextNode);
-        resCell.appendChild(bodyCell)
+        resCell.appendChild(bodyCell);
         resRow.appendChild(resCell);
         responseTBody.appendChild(resRow);
         document.getElementById(msg.id).addEventListener("click", showDetails);
