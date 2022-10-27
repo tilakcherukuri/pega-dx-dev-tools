@@ -168,7 +168,7 @@ chrome.runtime.onMessage.addListener(function (request) {
   if (request.type === "networkdata") {
     console.info("listened to message", request);
     let req_obj = request.details_filtered;
-    if (req_obj && req_obj._resourceType === "xhr") {
+    if (req_obj) {
       renderNewInsights(req_obj);
     }
   }
