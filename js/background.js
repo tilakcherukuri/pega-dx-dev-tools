@@ -95,8 +95,6 @@ function manageChromeStorageOnload(flag) {
           appDefSettings            : true,
           scriptsSelectionValue     : false,
           consoleSelectionValue     : false,
-          tblObjPreferencesValue    : tblDef,
-          selectedServiceUrl        : "",
           notificationSelection     : true
         }, function() {
           console.log("Enabled AppDefaultSettings on Chrome Storage");
