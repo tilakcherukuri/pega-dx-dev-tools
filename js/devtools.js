@@ -9,7 +9,7 @@ window.localStorage.removeItem("lowest_val");
 window.localStorage.removeItem("highest_val");
 var requestIDCounter = 0;
 var serviceURLToTrace = "";
-chrome.devtools.network.onRequestFinished.addListener(async (request) => {
+chrome.devtools.network.onRequestFinished.addListener((request) => {
   let req_obj = {
     url: request.request.url,
     method: request.request.method,
@@ -17,8 +17,9 @@ chrome.devtools.network.onRequestFinished.addListener(async (request) => {
     res_code: request.response.statusText,
     time: request.time,
     startedDateTime: request.startedDateTime,
+    _resourceType: request._resourceType,
   };
-  await chrome.storage.sync.get("selectedServiceUrl", function (res) {
+  chrome.storage.sync.get("selectedServiceUrl", function (res) {
     serviceURLToTrace = res.selectedServiceUrl;
   });
   request.getContent((body) => {
