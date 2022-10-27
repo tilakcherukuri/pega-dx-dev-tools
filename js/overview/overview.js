@@ -30,8 +30,8 @@ chrome.storage.local.get(
   ],
   (res) => {
     appDetails = res;
-    console.log(appDetails);
-    console.log(chrome.devtools.inspectedWindow.tabId);
+    // console.log(appDetails);
+    // console.log(chrome.devtools.inspectedWindow.tabId);
     if (appDetails["activeTabId"] == chrome.devtools.inspectedWindow.tabId) {
       applicationVersionElem.textContent =
         appDetails["applicationVersion"] != ""
