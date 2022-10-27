@@ -4,29 +4,6 @@ const logTypes = {
   warning: "row alert alert-warning",
   info: "row alert alert-info",
 }
-var logsArray = [
-  // {
-  //   type: "Info",
-  //   message: "enable pega extension",
-  //   timestamp: "July 21, 1983 01:15:00",
-  // },
-  // {
-  //   type: "Warning",
-  //   message: "enable pega extension",
-  //   timestamp: "July 21, 1983 01:15:00",
-  // },
-  // {
-  //   type: "Error",
-  //   message: "enable pega extension",
-  //   timestamp: "July 21, 1983 01:15:00",
-  // },
-  // {
-  //   type: "Success",
-  //   message: "enable pega extension",
-  //   timestamp: "July 21, 1983 01:15:00",
-  // },
-]
-
 const addRow = (log) => {
   let div = document.getElementById("log-contaner")
   if (div) {
@@ -47,14 +24,11 @@ const addRow = (log) => {
 }
 
 const renderLogs = (log) => {
-  if(logsArray.length>0){
     if(document.getElementById('no-logs'))
     document.getElementById('no-logs').style.display = "none"
-  }
-  logsArray = [...logsArray, log]
-  logsArray.map((log) => {
-    addRow(log)
-  })
+  
+      addRow(log)
+   
 }
 
 const camalize = (str) => {
