@@ -36,7 +36,7 @@ function save_options() {
     msg.innerHTML = "&#10004; Preferences Saved Successfully";
     setTimeout(function() {
         msg.innerHTML = "";
-    }, 1200);
+    }, 1500);
     
     // Dispaly chrome storage values
     chrome.storage.sync.get(null, function(items){
@@ -85,7 +85,7 @@ function reset_options() {
     msg.innerHTML = "&#10004; Preferences Reset Successfully";
     setTimeout(function() {
       msg.innerHTML = "";
-    }, 1200);
+    }, 1500);
   });
   
 }
@@ -118,7 +118,7 @@ function addRow(event) {
       // Clear the fields
       document.getElementById('txtenv_defname').value = "";
       document.getElementById('txtservice_defurl').value = "";
-    }, 1200);
+    }, 1500);
 
     return; 
   }
@@ -128,7 +128,7 @@ function addRow(event) {
     tblmsg.innerHTML = "&#9888; Environment name can't be blank";
     setTimeout(function() {
       tblmsg.innerHTML = "";
-    }, 1200);
+    }, 1500);
       return false;
   }
 
@@ -137,7 +137,7 @@ function addRow(event) {
     tblmsg.innerHTML = "&#9888; Service url can't be blank";
     setTimeout(function() {
       tblmsg.innerHTML = "";
-    }, 1200);
+    }, 1500);
     return false;
   }
 
@@ -197,21 +197,18 @@ function updateData(event) {
   var servurl = datatr[2].querySelector('input[id="txtservice_url"]').value;
   console.log("updateDataRow :: radio=checked" + " envname="+envname+" servurl="+servurl);
 
-  var msg_env = document.getElementById("mesg_env");
-  var msg_servurl = document.getElementById("mesg_servurl");
-
   if (!envname) {
-    msg_env.innerHTML = "&#9888; Environment name can't be blank";
+    tblmsg.innerHTML = "&#9888; Environment name can't be blank";
     setTimeout(function() {
-      msg_env.innerHTML = "";
-    }, 1200);
+      tblmsg.innerHTML = "";
+    }, 1500);
     return false;
   }
   if (!servurl) {
-    msg_servurl.innerHTML = "&#9888; Service url can't be blank";
+    tblmsg.innerHTML = "&#9888; Service url can't be blank";
     setTimeout(function() {
-      msg_servurl.innerHTML = "";
-    }, 1200);
+      tblmsg.innerHTML = "";
+    }, 1500);
     return false;
   }
     
