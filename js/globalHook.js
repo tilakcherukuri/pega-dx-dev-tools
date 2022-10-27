@@ -26,72 +26,72 @@ const identifyAppType = () => {
   // Dummy Message to get Tab ID
   chrome.runtime.sendMessage({ text: "Get Active Tab ID" }, (tabId) => {
     //console.log(tabId);
-    activeTabId = tabId.tab
-  })
+    activeTabId = tabId.tab;
+  });
 
-  var entries = performance.getEntriesByType("resource")
+  var entries = performance.getEntriesByType("resource");
   const bundleFileForReact = entries.find(
     (entry) =>
       entry.name.trim().replaceAll(" ", "").includes("bundle.js") ||
       entry.name.trim().replaceAll(" ", "").includes("main")
-  )
+  );
   const mainFileForAngular = entries.find((entry) =>
     entry.name.trim().replaceAll(" ", "").includes("main.js")
-  )
+  );
   const constellationFileForCosmos = entries.find((entry) =>
     entry.name.trim().replaceAll(" ", "").includes("pega-bootstrap-component")
-  )
+  );
   // React SDK / React SP
-  if (bundleFileForReact) {
+  if (bundleFileForReact && !mainFileForAngular) {
     fetchFileData(bundleFileForReact.name).then((res) => {
-      const bundle = res.toLocaleLowerCase()
+      const bundle = res.toLocaleLowerCase();
       if (bundle.includes("pega")) {
         if (bundle.includes("sdk")) {
           chrome.runtime.sendMessage({
             buildType: "pega-app",
             appType: "Pega React SDK",
-          })
-          getReactSDKDetails(bundle)
+          });
+          getReactSDKDetails(bundle);
         } else if (bundle.includes("sp-r")) {
           chrome.runtime.sendMessage({
             buildType: "pega-app",
             appType: "Pega React Starter Pack",
-          })
+          });
           if (bundleFileForReact.name.includes("main")) {
-            getReactSPDetailsForProd(bundle)
+            getReactSPDetailsForProd(bundle);
           } else {
-            getReactSPDetails(bundle)
+            getReactSPDetails(bundle);
           }
         }
       } else {
         /* react app is not pega based */
-        setNotSupportedData()
+        setNotSupportedData();
       }
-    })
+    });
   } // Angular SDK / Angular SP
   else if (mainFileForAngular) {
     fetchFileData(mainFileForAngular.name).then((res) => {
-      const main = res.toLocaleLowerCase()
+      const main = res.toLocaleLowerCase();
       if (main.includes("pega")) {
         if (main.includes("sdk")) {
           chrome.runtime.sendMessage({
             reactBuildType: "pega-app",
             appType: "Pega Angular SDK",
-          })
-          getAngularSDKDetails(main)
+          });
+          getAngularSDKDetails(main);
         } else if (main.includes("sp-a")) {
           chrome.runtime.sendMessage({
             reactBuildType: "pega-app",
             appType: "Pega Angular Starter Pack",
-          })
-          getAngularSPDetails()
+          });
+          getAngularSPDetails();
         }
       } else {
         // angular app is not pega based
 
         setNotSupportedData();
       }
-    })
+    });
   } else if (constellationFileForCosmos) {
     chrome.runtime.sendMessage({
       buildType: "pega-app",
@@ -100,13 +100,13 @@ const identifyAppType = () => {
 
     getPegaCosmosDetails(constellationFileForCosmos.name);
   } else {
-    setNotSupportedData()
+    setNotSupportedData();
   }
-}
+};
 
 const fetchFileData = (jsFile) => {
-  return fetch(jsFile).then((response) => response.text())
-}
+  return fetch(jsFile).then((response) => response.text());
+};
 
 /********************************************** START INJECT CONTENT SCRIPT *******************************/
 /**
@@ -117,66 +117,69 @@ const fetchFileData = (jsFile) => {
  * @see    {@link http://stackoverflow.com/questions/20499994/access-window-variable-from-content-script}
  */
 function injectScript(file_path, tag) {
-  var node = document.getElementsByTagName(tag)[0]
-  var script = document.createElement("script")
-  script.setAttribute("type", "text/javascript")
-  script.setAttribute("src", file_path)
-  node.appendChild(script)
+  var node = document.getElementsByTagName(tag)[0];
+  var script = document.createElement("script");
+  script.setAttribute("type", "text/javascript");
+  script.setAttribute("src", file_path);
+  node.appendChild(script);
 }
-injectScript(chrome.runtime.getURL("inject.js"), "body")
+injectScript(chrome.runtime.getURL("inject.js"), "body");
 
 /* END INJECT CONTENT SCRIPT */
 
 /* Identify the build type*/
-identifyAppType()
+identifyAppType();
 
 function setNotSupportedData() {
-  applicationType = "Not Supported"
-  setValuesToLocalStorage(activeTabId)
+  applicationType = "Not Supported";
+  setValuesToLocalStorage(activeTabId);
   chrome.runtime.sendMessage({
     buildType: "disabled",
-  })
+  });
 }
 
 // ***************************** React SP ***********************************************************
 function getReactSPDetails(bundle) {
-  applicationType = "Pega React Starter Pack"
-  const indexOfReactVersion = bundle.indexOf("reactversion =") + 15
+  applicationType = "Pega React Starter Pack";
+  const indexOfReactVersion = bundle.indexOf("reactversion =") + 15;
   thirdPartyComponentVersion = bundle.substring(
     indexOfReactVersion,
     bundle.indexOf(";", indexOfReactVersion)
-  )
-  thirdPartyComponentVersion = thirdPartyComponentVersion.replaceAll("'", "")
-  const indexOfSPRVersion = bundle.indexOf("sp-r") + 4
+  );
+  thirdPartyComponentVersion = thirdPartyComponentVersion.replaceAll("'", "");
+  const indexOfSPRVersion = bundle.indexOf("sp-r") + 4;
   applicationVersion =
     "SP-R" +
-    bundle.substring(indexOfSPRVersion, bundle.indexOf('"', indexOfSPRVersion))
+    bundle.substring(indexOfSPRVersion, bundle.indexOf('"', indexOfSPRVersion));
 
-  const indexOfURL = bundle.indexOf("pegaurl:") + 9
+  const indexOfURL = bundle.indexOf("pegaurl:") + 9;
   pegaPlatformURL = bundle.substring(
     indexOfURL,
     bundle.indexOf(",", indexOfURL)
-  )
-  pegaPlatformURL = pegaPlatformURL.replaceAll('"', "")
-  setValuesToLocalStorage(activeTabId)
+  );
+  pegaPlatformURL = pegaPlatformURL.replaceAll('"', "");
+  pegaPlatformVersion = "8.7.2 *";
+  setValuesToLocalStorage(activeTabId);
 }
+
 /* Function for Prod mode React-Starter-pack */
 function getReactSPDetailsForProd(bundle) {
-  applicationType = "Pega React Starter Pack"
+  applicationType = "Pega React Starter Pack";
 
-  thirdPartyComponentVersion = "17.0.2 *"
-  const indexOfSPRVersion = bundle.indexOf("sp-r") + 4
+  thirdPartyComponentVersion = "17.0.2 *";
+  const indexOfSPRVersion = bundle.indexOf("sp-r") + 4;
   applicationVersion =
     "SP-R" +
-    bundle.substring(indexOfSPRVersion, bundle.indexOf('"', indexOfSPRVersion))
+    bundle.substring(indexOfSPRVersion, bundle.indexOf('"', indexOfSPRVersion));
 
-  const indexOfURL = bundle.indexOf("pegaurl:") + 9
+  const indexOfURL = bundle.indexOf("pegaurl:") + 9;
   pegaPlatformURL = bundle.substring(
     indexOfURL,
     bundle.indexOf(",", indexOfURL)
-  )
-  pegaPlatformURL = pegaPlatformURL.replaceAll('"', "")
-  setValuesToLocalStorage(activeTabId)
+  );
+  pegaPlatformURL = pegaPlatformURL.replaceAll('"', "");
+  pegaPlatformVersion = "8.7.2 *";
+  setValuesToLocalStorage(activeTabId);
 }
 
 // *********************************************React SDK ************************************************
@@ -187,25 +190,25 @@ function getReactSDKDetails(bundle) {
         message: "React Data",
       },
     })
-  )
-  applicationType = "Pega React SDK"
-  const indexOfReactVersion = bundle.indexOf("reactversion =") + 15
+  );
+  applicationType = "Pega React SDK";
+  const indexOfReactVersion = bundle.indexOf("reactversion =") + 15;
   thirdPartyComponentVersion = bundle.substring(
     indexOfReactVersion,
     bundle.indexOf(";", indexOfReactVersion)
-  )
-  thirdPartyComponentVersion = thirdPartyComponentVersion.replaceAll("'", "")
-  const indexOfSDKVersion = bundle.indexOf("sdkversion =") + 12
+  );
+  thirdPartyComponentVersion = thirdPartyComponentVersion.replaceAll("'", "");
+  const indexOfSDKVersion = bundle.indexOf("sdkversion =") + 12;
   applicationVersion = bundle.substring(
     indexOfSDKVersion,
     bundle.indexOf(";", indexOfSDKVersion)
-  )
-  applicationVersion = applicationVersion.replaceAll('"', "")
+  );
+  applicationVersion = applicationVersion.replaceAll('"', "");
 
   fetchFileData("sdk-config.json").then((data) => {
-    const dt = JSON.parse(data)
-    pegaPlatformURL = dt["serverConfig"]["infinityRestServerUrl"]
-  })
+    const dt = JSON.parse(data);
+    pegaPlatformURL = dt["serverConfig"]["infinityRestServerUrl"];
+  });
 }
 
 // ************************************************ Angular SP ***********************************
@@ -216,8 +219,9 @@ function getAngularSPDetails() {
         message: "Angular Data",
       },
     })
-  )
-  applicationType = "Pega Angular Starter Pack"
+  );
+  applicationType = "Pega Angular Starter Pack";
+  pegaPlatformVersion = "8.7.2 *";
 }
 
 // ********************************* Connect to content.js file ***************************************
@@ -229,21 +233,21 @@ window.addEventListener(
       pegaPlatformURL =
         event.data.pegaPlatformURL != ""
           ? event.data.pegaPlatformURL
-          : pegaPlatformURL
+          : pegaPlatformURL;
       applicationVersion =
         event.data.applicationVersion != ""
           ? event.data.applicationVersion
-          : applicationVersion
+          : applicationVersion;
       thirdPartyComponentVersion =
         event.data.thirdPartyComponentVersion != ""
           ? event.data.thirdPartyComponentVersion
-          : thirdPartyComponentVersion
-      pegaPlatformVersion = event.data.pegaPlatformVersion
-      setValuesToLocalStorage(activeTabId)
+          : thirdPartyComponentVersion;
+      pegaPlatformVersion = event.data.pegaPlatformVersion;
+      setValuesToLocalStorage(activeTabId);
     }
   },
   false
-)
+);
 
 // *********************************** Cosmos ******************************************************
 function getPegaCosmosDetails(fileName) {
@@ -258,18 +262,18 @@ function getPegaCosmosDetails(fileName) {
 
 // ******************************************** Angular SDK *************************************
 function getAngularSDKDetails(main) {
-  applicationType = "Pega Angular SDK"
-  const indexOfSDKVersion = main.indexOf("sdkversion =") + 12
+  applicationType = "Pega Angular SDK";
+  const indexOfSDKVersion = main.indexOf("sdkversion =") + 12;
   applicationVersion = main.substring(
     indexOfSDKVersion,
     main.indexOf(";", indexOfSDKVersion)
-  )
+  );
 
-  applicationVersion = applicationVersion.replaceAll('"', "")
+  applicationVersion = applicationVersion.replaceAll('"', "");
 
-  const rootElem = document.querySelector("[ng-version]")
+  const rootElem = document.querySelector("[ng-version]");
   thirdPartyComponentVersion =
-    rootElem.getAttribute("ng-version") ?? "Not Found"
+    rootElem.getAttribute("ng-version") ?? "Not Found";
 
   window.dispatchEvent(
     new CustomEvent("_SDK_Details_", {
@@ -277,10 +281,10 @@ function getAngularSDKDetails(main) {
         message: "Angular Data",
       },
     })
-  )
+  );
 
   fetchFileData("sdk-config.json").then((data) => {
-    const dt = JSON.parse(data)
-    pegaPlatformURL = dt["serverConfig"]["infinityRestServerUrl"]
-  })
+    const dt = JSON.parse(data);
+    pegaPlatformURL = dt["serverConfig"]["infinityRestServerUrl"];
+  });
 }

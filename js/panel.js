@@ -69,7 +69,7 @@ function refresh_options() {
       msgr.innerHTML = "&#10004; Refresh Successful";
       setTimeout(function () {
         msgr.innerHTML = "";
-      }, 1200);
+      }, 1500);
     }
   );
 }

@@ -107,7 +107,9 @@
   
   .msgClass {
     text-align: center;
-    font-size: 8px;
+    font-size: 10px;
+    color : red;
+    font-weight: bold;
   }
 
   input[type=text] {

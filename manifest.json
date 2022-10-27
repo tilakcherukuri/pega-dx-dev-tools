@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Pega DX Developer Tools",
-  "version": "1.0.0",
-  "description": "An extension for troubleshooting apps running on pega dx services",
+  "version": "2.0.1",
+  "description": "An browser extension that helps troubleshooting web applications using DX capabilities of Pega",
   "background": {
     "service_worker": "/js/background.js"
   },
