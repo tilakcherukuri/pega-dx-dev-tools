@@ -1,15 +1,13 @@
 console.info("*********Insights loaded***********");
-//window.localStorage.removeItem("sync_q");
-//window.localStorage.removeItem("prev_sync_q");
 window.localStorage.removeItem("lowest_val");
 window.localStorage.removeItem("highest_val");
 window.localStorage.removeItem("sync_q");
 const MAX_ITEM_TO_DISPLAY_IN_GRAPH = 15;
+
 var options = {
   series: [],
   chart: {
     height: 280,
-    //type: "rangeBar",
     type: "bar",
     zoom: {
       enabled: true,
@@ -55,44 +53,6 @@ var options = {
 
 var chart = new ApexCharts(document.querySelector("#chart"), options);
 chart.render();
-
-/*setInterval(() => {
-  let sync_q = window.localStorage.getItem("sync_q");
-  let low = 1000,
-    high = 5;
-  let prev_sync_q = window.localStorage.getItem("prev_sync_q");
-  if (sync_q && prev_sync_q !== sync_q) {
-    window.localStorage.setItem("prev_sync_q", sync_q);
-    const syncs = JSON.parse(sync_q);
-    debugger;
-    console.table("Syncs Received --->");
-    let data_series = [];
-    syncs.map(async (item) => {
-      console.log(item);
-      //Updating the network table
-      showlatencyData(item);
-      //Pushing graph data
-      data_series.push({
-        x: item.url,
-        y: [
-          (parseFloat(item.time) / 1000).toFixed(2),
-          (parseFloat(item.time) / 1000).toFixed(2) + 20,
-        ],
-      });
-      rerenderChart(data_series);
-      //Updating High/Low latencies
-      if (item.time < low) {
-        low = item.time;
-        renderlatencyTextLinks(item, "LOW");
-      } else if (item.time > high) {
-        high = item.time;
-        renderlatencyTextLinks(item, "HIGH");
-      }
-    });
-  } else if (prev_sync_q === sync_q) {
-    console.info("Syncs Matched with Previous queue, Page updated skipped .. ");
-  }
-}, 1000); */
 
 let renderlatencyTextLinks = async (item, type) => {
   let itemStatus = item.res_stats + "";
@@ -153,13 +113,6 @@ let showEmptyDatas = () => {
 
 showEmptyDatas();
 
-/*let rerenderChart = (data_series) => {
-  console.log("RenderChart", data_series);
-  chart.appendSeries({
-    data: data_series,
-  });
-};*/
-
 let rerenderChart = (data_series) => {
   console.log("RenderChart", data_series);
   chart.updateSeries([
@@ -183,7 +136,6 @@ let renderNewInsights = async (item) => {
   //Pushing graph data
   let data_series = [];
   let sync_q = window.localStorage.getItem("sync_q");
-  debugger;
   if (sync_q) {
     sync_q = JSON.parse(sync_q);
     data_series.push(...sync_q);
@@ -194,10 +146,6 @@ let renderNewInsights = async (item) => {
   let url = item.url && item.url.split("/api") && item.url.split("/api")[1];
   data_series.push({
     x: url,
-    /* y: [
-      (parseFloat(item.time) / 1000).toFixed(2),
-      (parseFloat(item.time) / 1000).toFixed(2) + 20,
-    ], */
     y: parseInt(item.time),
     fillColor:
       "#" + ((Math.random() * 0xffffff) << 0).toString(16).padStart(6, "0"),
@@ -223,5 +171,3 @@ chrome.runtime.onMessage.addListener(function (request) {
     }
   }
 });
-
-const blinkLiveLabels = () => {};
