@@ -1,7 +1,9 @@
 name: bundle-extension
 
 on:
-  create:
+  push:
+    tags:
+      - "v*"
     branches:
       - v2.1
 
