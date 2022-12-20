@@ -2,8 +2,10 @@ name: bundle-extension
 
 on:
   push:
-    tags: [1-9]+.[0-9]+.[0-9]+
-    branches: v2.1
+    tags: 
+    - "[1-9]+.[0-9]+.[0-9]+"
+    branches:
+    - v2.1
 
 permissions:
   contents: read
