@@ -31,8 +31,8 @@ jobs:
           echo "{VERSION}=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_OUTPUT
       - name: Build extensions packages
         run: |
-          tools/make-chromium.sh ${{ steps.release_info.outputs.VERSION }}
-          tools/make-firefox.sh ${{ steps.release_info.outputs.VERSION }}
+          utils/make-chromium.sh ${{ steps.release_info.outputs.VERSION }}
+          utils/make-firefox.sh ${{ steps.release_info.outputs.VERSION }}
       - name: Create release and upload artifact 🚀
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
