@@ -1,10 +1,13 @@
 {
-  "manifest_version": 3,
+  "manifest_version": 2,
   "name": "Pega DX Developer Tools",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "An browser extension that helps troubleshooting web applications using DX capabilities of Pega",
   "background": {
-    "service_worker": "/js/background.js"
+    "scripts":[
+      "js/background.js"
+    ],
+    "persistent": true
   },
   "icons": {
     "16": "/assets/icons/16-disabled.png",
@@ -21,12 +24,9 @@
     "clipboardRead",
     "clipboardWrite"
   ],
-  "host_permissions": ["<all_urls>"],
   "devtools_page": "html/devtools/devtools.html",
-  "action": {
-    "default_title": "Pega DX Developer Tools",
-    "default_popup": "/html/popups/disabled.html"
-  },
+  "default_title": "Pega DX Developer Tools",
+  "default_popup": "/html/popups/disabled.html",
   "content_scripts": [
     { "js": ["js/globalHook.js"], "matches": ["<all_urls>"] },
     {
@@ -39,9 +39,7 @@
       "open_in_tab": true
   }, 
   "web_accessible_resources": [
-    {
-      "resources": ["inject.js"],
-      "matches": ["<all_urls>"]
-    }
+       "inject.js",
+       "<all_urls>"
   ]
 }
